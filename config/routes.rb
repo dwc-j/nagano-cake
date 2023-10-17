@@ -1,39 +1,27 @@
 Rails.application.routes.draw do
-  
-  # Jimmy
-  # devise_for :users
-  # namespace :admin do
-  #   get 'homes/top'
-  # end
-  # namespace :admin do
-  #   get 'order_details/update'
-  # end
-  # namespace :admin do
-  #   get 'orders/show'
-  #   get 'orders/update'
-  # end
-  # namespace :admin do
-  #   get 'customers/index'
-  #   get 'customers/show'
-  #   get 'customers/edit'
-  #   get 'customers/update'
-  # end
-  # namespace :admin do
-  #   get 'genres/index'
-  #   get 'genres/create'
-  #   get 'genres/edit'
-  #   get 'genres/update'
-  # end
-  # namespace :admin do
-  #   get 'items/index'
-  #   get 'items/new'
-  #   get 'items/create'
-  #   get 'items/show'
-  #   get 'items/edit'
-  #   get 'items/update'
-  # end
-  # Jimmy end
-  
-  
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  
+  root :to => "public/homes#top"
+  
+  namespace :public do
+    get "/about" => "homes#about"
+  
+    resources :items, only: [:index, :show]
+    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
+    resources :cart_items, only: [:index, :update, :destroy, :clear, :create]
+    resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  end
+  
+  namaespace :admin do
+    get "/admin" => "homes#top"
+    
+    resources :items
+    resources :genres, only: [:index, :create, :edit, :update]
+    resources :customers, only: [:index, :show, :edit, :update]
+    resources :orders, only: [:show, :update]
+    resources :order_details, only: [:update]
+  end
+
 end
