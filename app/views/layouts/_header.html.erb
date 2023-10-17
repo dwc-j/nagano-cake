@@ -1,45 +1,58 @@
 <header>
-	<% if user_signed_in? %>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-3">
+        <li>
+    　     <%= link_to root_path, class: "border border-dark" do %>
+            ここにロゴ
+          <% end %>
+        </li>
+      </div>
+	    <% if user_signed_in? %>
+        <div class="col-6 justify-content-end">
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to public_customer_path, class: "btn btn-outline-secondary" do %>
+              マイページ
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
+              商品一覧
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to public_cart_items_path, class: "btn btn-outline-secondary" do %>
+              カート
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
+              ログアウト
             <% end %>
           </li>
         <% else %>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to about_path, class: "btn btn-outline-secondary" do %>
+              About
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
+              商品一覧
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to new_user_registration_path,class: "btn btn-outline-secondary" do %>
+              新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to root_path do %>
-              Home
+            <%= link_to new_user_session_path ,class: "btn btn-outline-secondary" do %>
+              ログイン
             <% end %>
           </li>
         <% end %>
+        </div>
+    </div>
+  </div>
 </header>
