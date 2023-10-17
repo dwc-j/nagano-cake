@@ -14,20 +14,23 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
   root :to => "public/homes#top"
   get "about" => "homes#about"
   resources :items, only: [:index, :show]
-  
-  namespace :public do
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
-    resources :cart_items, only: [:index, :update, :destroy, :destroy_all, :create]
+
+  # namespace :public do
+    resource :customers, only: [:show, :edit, :update] do
+      member do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+    delete "/cart_items/destroy_all" => "cart_items#destroy_all"
+    
     resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
+
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  end
+  # end
 
 
-  namespace :admin do
-    get "/admin" => "homes#top"
-
-
-  
   namespace :admin do
     get "/admin" => "homes#top"
     resources :items
