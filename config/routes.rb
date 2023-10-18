@@ -12,7 +12,7 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
 
 
   root :to => "public/homes#top"
-  get "about" => "homes#about"
+  get "/about" => "public/homes#about"
   resources :items, only: [:index, :show]
 
   # namespace :public do
