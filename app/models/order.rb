@@ -5,6 +5,7 @@ class Order < ApplicationRecord
   validates :name, presence: true
 
   # アソシエーション
-  belongs_to :user
-  has_many :order_details
+  belongs_to :customer
+  has_many :order_details, dependent: :destroy
+  has_one_attached :image
 end
