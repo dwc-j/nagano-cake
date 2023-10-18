@@ -13,6 +13,8 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
 
   root :to => "public/homes#top"
   get "about" => "homes#about"
+  get "admin" => "homes#top"
+  
   resources :items, only: [:index, :show]
 
   # namespace :public do
