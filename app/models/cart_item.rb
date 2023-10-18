@@ -1,6 +1,5 @@
 class CartItem < ApplicationRecord
   # バリデーション
-  validates :amount, presence: true
 
   # アソシエーション
   belongs_to :user
