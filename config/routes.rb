@@ -14,7 +14,7 @@ Rails.application.routes.draw do
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
   
-  namaespace :admin do
+  namespace :admin do
     get "/admin" => "homes#top"
     
     resources :items
