@@ -1,7 +1,10 @@
 class OrderDetail < ApplicationRecord
   # バリデーション
-  validates :quantity, presence: true
+  validates :item_id, presence: true
+  validates :order_id, presence: true
+  validates :amount, presence: true
   validates :price, presence: true
+  validates :making_status, presence: true
 
   # アソシエーション
   belongs_to :order
