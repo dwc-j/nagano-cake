@@ -5,6 +5,8 @@ class Item < ApplicationRecord
 
   # アソシエーション
   belongs_to :genre
-  has_many :cart_items
-  has_many :order_details
+  has_many :cart_items, dependent: :destroy
+  has_many :order_details, dependent: :destroy
+  has_one_attached :image
+  
 end

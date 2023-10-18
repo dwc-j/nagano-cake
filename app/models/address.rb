@@ -5,5 +5,5 @@ class Address < ApplicationRecord
   validates :name, presence: true
 
   # アソシエーション
-  belongs_to :user
+  belongs_to :customer
 end
