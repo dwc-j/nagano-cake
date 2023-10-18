@@ -8,7 +8,7 @@
           <% end %>
         </li>
       </div>
-	    <% if user_signed_in? %>
+	    <% if customer_signed_in? %>
         <div class="col-6 justify-content-end">
           <li>
             <%= link_to public_customer_path, class: "btn btn-outline-secondary" do %>
@@ -26,7 +26,7 @@
             <% end %>
           </li>
           <li>
-            <%= link_to destroy_user_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
+            <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
               ログアウト
             <% end %>
           </li>
@@ -42,12 +42,12 @@
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_registration_path,class: "btn btn-outline-secondary" do %>
+            <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
               新規登録
             <% end %>
           </li>
           <li>
-            <%= link_to new_user_session_path ,class: "btn btn-outline-secondary" do %>
+            <%= link_to new_customer_session_path ,class: "btn btn-outline-secondary" do %>
               ログイン
             <% end %>
           </li>
