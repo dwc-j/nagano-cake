@@ -1,23 +1,43 @@
 Rails.application.routes.draw do
-  devise_for :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
-  
+
+devise_for :customers,skip: [:passwords] , controllers: {
+  registrations: "public/registrations",
+  sessions: 'public/sessions'
+}
+
+devise_for :admin, skip: [:registrations, :passwords] , controllers: {
+  sessions: "admin/sessions"
+}
+
+
   root :to => "public/homes#top"
-  
-  namespace :public do
-    get "/about" => "homes#about"
-  
-    resources :items, only: [:index, :show]
-    resources :customers, only: [:show, :edit, :update, :unsubscribe, :withdraw]
-    resources :cart_items, only: [:index, :update, :destroy, :clear, :create]
-    resources :orders, only: [:new, :confirm, :complete, :create, :index, :show]
+  get "admin" => "homes#top"
+  get "/about" => "public/homes#about"
+  resources :items, only: [:index, :show]
+
+  # namespace :public do
+    resource :customers, only: [:show, :edit, :update] do
+      member do
+        get :unsubscribe
+        patch :withdraw
+      end
+    end
+    resources :cart_items, only: [:index, :update, :destroy, :create] do
+      collection do
+        delete :destroy_all
+      end
+    end
+    resources :orders, only: [:new, :create, :index, :show] do
+      collection do
+        post :confirm
+        get :complete
+      end
+    end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
-  end
-  
-  namaespace :admin do
-    get "/admin" => "homes#top"
-    
-    resources :items
+
+  namespace :admin do
+    get "admin" => "homes#top"
+    resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
