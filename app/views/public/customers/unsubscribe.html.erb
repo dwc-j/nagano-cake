@@ -1,0 +1,8 @@
+<h1>本当に退会しますか？</h1>
+
+<p>退会すると会員登録情報や</p>
+<p>これまでの購入履歴が閲覧できなくなります。</p>
+<p>退会する場合は、「退会する」をクリックしてください。</p>
+
+<%= button_to '退会しない', costomer_path(@costomer), method: :get %>
+<%= button_to '退会する', withdraw_costomer_path(@costomer), method: :patch %>
