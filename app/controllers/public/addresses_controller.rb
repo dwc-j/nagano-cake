@@ -27,7 +27,7 @@ class Public::AddressesController < ApplicationController
   
   def destroy
     @address.destroy
-    redirect_to addresses_url, notice: '配送先が正常に削除されました'
+    redirect_to addresses_path, notice: '配送先が正常に削除されました'
   end
   
   def set_address
