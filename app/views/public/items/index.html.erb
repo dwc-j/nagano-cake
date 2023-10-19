@@ -1,2 +1,19 @@
-<h1>Public::Items#index</h1>
-<p>Find me in app/views/public/items/index.html.erb</p>
+<div class='container'>
+  <div class='row'>
+    <div class='col-md-3'>
+			<div>
+				<!--< render 'layouts/genre' >-->
+			</div>
+		</div>
+	</div>
+
+	<div class='row'>
+    <div class='col-md-9'>
+    	<h1>商品一覧</h1>
+    	<%= render 'index' obj: @items %>
+    	
+    	<!--pagination-->
+
+		</div>
+	</div>
+</div>
