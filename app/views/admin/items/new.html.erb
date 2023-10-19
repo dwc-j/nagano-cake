@@ -1,2 +1,41 @@
-<h1>Admin::Items#new</h1>
-<p>Find me in app/views/admin/items/new.html.erb</p>
+<div class="container">
+  <div class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
+    <p>商品新規登録</p>
+  </div>
+</div>
+
+<div class="container">
+<div class="col-5 mx-auto">
+  <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
+    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+      <%= f.label :商品画像, class: "mr-4" %>
+      <%= f.file_field :image, class: "form-control-file image", accept: 'image/*' %>
+    </div>
+    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+      <%= f.label :商品名　, class: "mr-4" %>
+      <%= f.text_field :name, placeholder: "商品名を入力", class: "form-control name" %>
+    </div>
+    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+      <%= f.label :商品説明, class: "mr-4" %>
+      <%= f.text_area :explanation, rows:'6', placeholder: "商品説明を入力", class: "form-control explanation" %>
+    </div>
+    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3 ">
+      <%= f.label :ジャンル, class: "mr-4" %>
+      <%= f.select :genre_id, options_for_select(@genres.map { |g| [g.name, g.id] }), {include_blank: '--選択してください--'}, {class: "form-control"} %>
+    </div>
+    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+      <%= f.label :税抜価格, class: "mr-4" %>
+      <%= f.text_field :price, placeholder: "1000", class: "form-control form-control-sm price" %>円
+    </div>
+    <div class="form-group">
+      <%= f.label :is_active, "販売ステータス" %>
+      <%= f.radio_button :is_active, :true, checked: true %>
+      <%= label_tag 'is_active_true', '販売中' %>
+      <%= f.radio_button :is_active, :false %>
+      <%= label_tag 'is_active_false', '販売停止' %>
+    </div>
+    <div class="">
+      <%= f.submit :新規登録, class: 'btn btn-secondary' %>
+    </div>
+  <% end %>
+</div>
