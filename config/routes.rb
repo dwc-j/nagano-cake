@@ -19,9 +19,10 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
 
   get "admin" => "admin/homes#top"
   
-  resources :items, only: [:index, :show]
+  #resources :items, only: [:index, :show]
 
-  # namespace :public do
+namespace :public, path: '' do #URLにpublicが入らないようにしました。
+    resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
     resource :customers, only: [:show, :edit, :update] do
       member do
         get :unsubscribe
@@ -51,4 +52,5 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
     resources :order_details, only: [:update]
   end
 
+end
 end

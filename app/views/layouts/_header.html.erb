@@ -1,13 +1,14 @@
 <header>
   <div class="container">
     <div class="flex-row">
-      <div class="navbar-brand ">
+      <div class="navbar-brand">
         <li class="list-unstyled">
     　     <%= link_to root_path, class: "border border-dark" do %>
             ここにロゴ
           <% end %>
         </li>
       </div>
+
       <div class="col-5 ml-auto">
        <ul class="list-unstyled">
         <div class="d-flex justify-content-between">
@@ -35,6 +36,7 @@
                   ログアウト
                 <% end %>
               </li>
+
     
                <% else %>
               <li class="d-flex">
@@ -57,9 +59,11 @@
                   ログイン
                 <% end %>
                 </li>
+
             <% end %>
-        </div> 
-       </ul>
+          </li>
+        <% end %>
+        </ul>
       </div>
     </div>
   </div>
