@@ -1,65 +1,116 @@
-<h2>新規会員登録</h2>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h4">
+      新規会員登録
+    </p>
+  </div>
+</div>
 
-<%= form_with model: @customer, url: customer_registration_path do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+  <div class="col-7 d-flex justify-content-center align-items-center border ">
+    <%= form_with model: @customer, url: customer_registration_path do |f| %>
+      <%= render "public/shared/error_messages", resource: resource %>
 
-   <div class="field">
-    <%= f.label :last_name, "姓" %>
-    <%= f.text_field :last_name, autofocus: true, placeholder: "令和" %>
+  <div class="font-weight-bold mt-3 ml-3">
+    名前<span class="badge badge-danger">必須</span>
+  </div>
+   <div class="form-row m-3">
+     <div class="form-inline text-secondary">
+    <%= f.label :last_name, "(姓)　" %>
+    <%= f.text_field :last_name, autofocus: true, placeholder: "令和", class:"mr-4 form-control" %>
+    <%= f.label :first_name, "(名)　" %>
+    <%= f.text_field :first_name, placeholder: "道子", class:"form-control" %>
+    </div>
+    </div>
+
+
+  <div class="font-weight-bold mt-3 ml-3">
+    フリガナ<span class="badge badge-danger">必須</span>
+  </div>
+  <div class="form-row m-3">
+    <div class="form-inline text-secondary">
+    <%= f.label :last_name_kana, "(セイ)" %>
+    <%= f.text_field :last_name_kana, placeholder: "レイワ", class:"mr-4 form-control" %>
+    <%= f.label :first_name_kana, "(メイ)" %>
+    <%= f.text_field :first_name_kana, placeholder: "ミチコ", class:"form-control" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name, "名" %>
-    <%= f.text_field :first_name, placeholder: "道子" %>
+  <div class="font-weight-bold mt-3 ml-3 form-group">
+    <%= f.label :email, "メールアドレス" %><span class="badge badge-danger">必須</span>
+  </div>
+  <div class="form-row m-3">
+    <div class="form-inline ">
+    <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class:"form-control w-100" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :last_name_kana, "セイ" %>
-    <%= f.text_field :last_name_kana, placeholder: "レイワ" %>
+  <div class="font-weight-bold mt-3 ml-3 form-group">
+    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><span class="badge badge-danger">必須</span>
+    </div>
+    <div class="form-row m-3">
+      <div class="form-inline ">
+    <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control w-100" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :first_name_kana, "メイ" %>
-    <%= f.text_field :first_name_kana, placeholder: "ミチコ" %>
+  <div class="font-weight-bold mt-3 ml-3 form-group">
+    <%= f.label :address, "住所" %><span class="badge badge-danger">必須</span>
+    </div>
+    <div class="form-row m-3">
+      <div class="form-inline ">
+    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control w-100" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :email, "メールアドレス" %><br />
-    <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com" %>
+  <div class="font-weight-bold mt-3 ml-3 form-group">
+    <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><span class="badge badge-danger">必須</span>
+    </div>
+    <div class="form-row m-3">
+      <div class="form-inline ">
+    <%= f.text_field :telephone_number, placeholder: "0000000000", class: "form-control w-100" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><br />
-    <%= f.text_field :postal_code, placeholder: "0000000" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :address, "住所" %><br />
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><br />
-    <%= f.text_field :telephone_number, placeholder: "0000000000" %>
-  </div>
-
-  <div class="field">
+  <div class="font-weight-bold mt-3 ml-3 form-group">
     <%= f.label :password, "パスワード(6文字以上)" %>
+    </div>
+    <div class="form-row m-3">
+      <div class="form-inline ">
     <% if @minimum_password_length %>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
+    <% end %>
+    <%= f.password_field :password, autocomplete: "new-password", class: "form-control w-100" %>
+  </div>
   </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation, "パスワード(確認用)" %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+  <div class="font-weight-bold mt-3 ml-3 form-group">
+    <%= f.label :password_confirmation, "パスワード(確認用)" %>
+    </div>
+    <div class="form-row m-3">
+      <div class="form-inline ">
+    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control w-100" %>
+  </div>
   </div>
 
-  <div class="actions">
-    <%= f.submit "新規登録" %>
+  <div class="actions m-4 d-flex justify-content-center">
+    <%= f.submit "新規登録",class: "btn btn-success form-control w-50" %>
   </div>
 <% end %>
+</div>
+</div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h5">
+      既に登録済みの方
+    </p>
+  </div>
 
 
-<p>すでに登録済みの方</p>
-<p><%= link_to 'こちら', new_customer_session_path %>からログインしてください</p>
+<p class="h5 d-flex justify-content-center mb-4">
+  <%= link_to 'こちら', new_customer_session_path %>からログインしてください
+</p>
+
+</div>
