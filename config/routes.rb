@@ -36,6 +36,7 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
       end
     end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+end
   
   namespace :admin do
     get "/admin" => "homes#top"
