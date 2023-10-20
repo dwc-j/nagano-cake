@@ -11,6 +11,7 @@
       <div class="col-5 ml-auto">
        <ul class="list-unstyled">
         <div class="d-flex justify-content-between">
+
           <% if customer_signed_in? %>
             <% if current_user.admin? %>
               <%= render 'layouts/admin_header' %>
@@ -35,6 +36,7 @@
                   ログアウト
                 <% end %>
               </li>
+
             <% end %>
           <% else %>
             <li class="d-flex">
