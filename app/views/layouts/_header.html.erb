@@ -1,13 +1,14 @@
 <header>
   <div class="container">
     <div class="flex-row">
-      <div class="navbar-brand ">
+      <div class="navbar-brand">
         <li class="list-unstyled">
     　     <%= link_to root_path, class: "border border-dark" do %>
             ここにロゴ
           <% end %>
         </li>
       </div>
+
       <div class="col-5 ml-auto">
        <ul class="list-unstyled">
         <div class="d-flex justify-content-between">
@@ -57,9 +58,42 @@
                 ログイン
               <% end %>
             </li>
+
             <% end %>
-        </div> 
-       </ul>
+          </li>
+          <li>
+            <%= link_to public_cart_items_path, class: "btn btn-outline-secondary" do %>
+              カート
+            <% end %>
+          </li>
+          <li>
+            <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
+              ログアウト
+            <% end %>
+          </li>
+        <% else %>
+          <li>
+            <%= link_to about_path, class: "btn btn-outline-secondary" do %>
+              About
+            <% end %>
+          </li>
+          <li>
+            <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
+              商品一覧
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
+              新規登録
+            <% end %>
+          </li>
+          <li>
+            <%= link_to new_customer_session_path ,class: "btn btn-outline-secondary" do %>
+              ログイン
+            <% end %>
+          </li>
+        <% end %>
+        </ul>
       </div>
     </div>
   </div>
