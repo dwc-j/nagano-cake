@@ -1,7 +1,13 @@
-<% obj.each do |item| %>
-	<%= link_to item_path(item) do %>
-	  <%= image_tag item.image, size: "250x200" %>
-  <% end %></br>
-  <%= item.name %></br>
-	<%= item.price %>
-<% end %>
+<div class="container">
+	<div class="row">
+		<% obj.each do |item| %>
+			<div class="col-3 mr-2">
+				<%= link_to public_item_path(item) do %>
+				  <%= image_tag item.image, size: "250x150" %>
+			  <% end %></br>
+			  <p class="ml-2"><%= item.name %></p>
+				<p class="ml-2">￥<%= item.price %></p>
+			</div>
+		<% end %>
+	</div>
+</div>
