@@ -14,9 +14,6 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
   get "/about" => "public/homes#about"
 
   get "admin" => "admin/homes#top"
-  
-  resources :items, only: [:index, :show]
-
 
   namespace :public, path: '' do #URLにpublicが入らないようにしました。
     resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
@@ -39,10 +36,10 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
     end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
   end
-  
+
   namespace :admin do
     get "/admin" => "homes#top"
-    
+
     resources :items
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
