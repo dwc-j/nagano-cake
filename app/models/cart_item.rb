@@ -4,5 +4,5 @@ class CartItem < ApplicationRecord
   # アソシエーション
   belongs_to :customer
   belongs_to :item
-  has_one_attached :image
+  has_one_attached :images
 end
