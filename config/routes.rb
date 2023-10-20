@@ -17,7 +17,7 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
   
   #resources :items, only: [:index, :show]
 
-namespace :public, psth: '' do #URLにpublicが入らないようにしました。
+namespace :public, path: '' do #URLにpublicが入らないようにしました。
     resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
     resource :customers, only: [:show, :edit, :update] do
       member do
