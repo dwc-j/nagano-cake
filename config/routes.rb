@@ -5,10 +5,6 @@ devise_for :customers,skip: [:passwords] , controllers: {
   sessions: 'public/sessions'
 }
 
-  devise_scope :customer do
-    get '/customers/sign_out' => 'public/sessions#destroy'
-  end
-
 devise_for :admin, skip: [:registrations, :passwords] , controllers: {
   sessions: "admin/sessions"
 }
@@ -19,9 +15,10 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
 
   get "admin" => "admin/homes#top"
   
-  #resources :items, only: [:index, :show]
+  resources :items, only: [:index, :show]
 
-namespace :public, path: '' do #URLにpublicが入らないようにしました。
+
+  namespace :public, path: '' do #URLにpublicが入らないようにしました。
     resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
     resource :customers, only: [:show, :edit, :update] do
       member do
@@ -41,6 +38,7 @@ namespace :public, path: '' do #URLにpublicが入らないようにしました
       end
     end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+  end
   
   namespace :admin do
     get "/admin" => "homes#top"
@@ -52,5 +50,4 @@ namespace :public, path: '' do #URLにpublicが入らないようにしました
     resources :order_details, only: [:update]
   end
 
-end
 end
