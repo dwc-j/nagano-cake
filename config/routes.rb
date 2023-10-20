@@ -41,6 +41,7 @@ namespace :public, path: '' do #URLにpublicが入らないようにしました
       end
     end
     resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+end
   
   namespace :admin do
     get "/admin" => "homes#top"
