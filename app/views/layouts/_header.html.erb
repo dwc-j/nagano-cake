@@ -1,25 +1,64 @@
 <header>
   <div class="container">
     <div class="flex-row">
-      <div class="navbar-brand ">
+      <div class="navbar-brand">
         <li class="list-unstyled">
     　     <%= link_to root_path, class: "border border-dark" do %>
             ここにロゴ
           <% end %>
         </li>
       </div>
+
       <div class="col-5 ml-auto">
        <ul class="list-unstyled">
         <div class="d-flex justify-content-between">
-	      <% if customer_signed_in? %>
-          <li>
-            <%= link_to public_customer_path, class: "btn btn-outline-secondary" do %>
-              マイページ
-            <% end %>
-          </li>
-          <li>
-            <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
-              商品一覧
+
+          <% if admin_signed_in? %>
+              <%= render 'layouts/admin_header' %>
+            <% elsif customer_signed_in?  %>
+              <li>
+                <%= link_to customers_path, class: "btn btn-outline-secondary" do %>
+                  マイページ
+                <% end %>
+              </li>
+              <li>
+                <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
+                  商品一覧
+                <% end %>
+              </li>
+              <li>
+                <%= link_to cart_items_path, class: "btn btn-outline-secondary" do %>
+                  カート
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
+                  ログアウト
+                <% end %>
+              </li>
+
+          <% else %>
+            <li class="d-flex">
+              <%= link_to about_path, class: "btn btn-outline-secondary" do %>
+                About
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
+                商品一覧
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
+                新規登録
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to new_customer_session_path ,class: "btn btn-outline-secondary" do %>
+                ログイン
+              <% end %>
+            </li>
+
             <% end %>
           </li>
           <li>
@@ -33,7 +72,7 @@
             <% end %>
           </li>
         <% else %>
-          <li class="d-flex">
+          <li>
             <%= link_to about_path, class: "btn btn-outline-secondary" do %>
               About
             <% end %>
@@ -43,19 +82,18 @@
               商品一覧
             <% end %>
           </li>
-          <li class="d-flex">
+          <li>
             <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
               新規登録
             <% end %>
           </li>
-          <li class="d-flex">
+          <li>
             <%= link_to new_customer_session_path ,class: "btn btn-outline-secondary" do %>
               ログイン
             <% end %>
           </li>
         <% end %>
-        </div> 
-       </ul>
+        </ul>
       </div>
     </div>
   </div>

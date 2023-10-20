@@ -1,11 +1,17 @@
 <div class="container">
-  <div class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
-    <p>商品新規登録</p>
-  </div>
+    <div class="row">
+      <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
+        商品新規登録
+      </p>
+      <p class="col-8 mt-5 text-right">
+      <%= link_to '商品一覧ページに戻る', admin_items_path, class: 'btn btn-outline-dark' %>
+      </p>
+    </div>
 </div>
 
 <div class="container">
 <div class="col-5 mx-auto">
+  <%= render 'layouts/errors', obj: @item %>
   <%= form_with model: @item, url: admin_items_path, local:true do |f| %>
     <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
       <%= f.label :商品画像, class: "mr-4" %>
@@ -34,8 +40,9 @@
       <%= f.radio_button :is_active, :false %>
       <%= label_tag 'is_active_false', '販売停止' %>
     </div>
-    <div class="">
-      <%= f.submit :新規登録, class: 'btn btn-secondary' %>
+    <div class="d-flex justify-content-center">
+      <%= f.submit :新規登録, class: 'btn btn-success btn-lg' %>
     </div>
   <% end %>
+</div>
 </div>

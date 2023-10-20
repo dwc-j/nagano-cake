@@ -1,2 +1,60 @@
-<h2>商品詳細</h2>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
+      商品詳細
+    </p>
+    <p class="col-8 mt-5 text-right">
+      <%= link_to '商品一覧ページに戻る', admin_items_path, class: 'btn btn-outline-dark' %>
+    </p>
+  </div>
+</div>
 
+
+<div class="container">
+  <div class="row">
+    <div class="col-4">
+      <p>
+        <!--とりあえず分岐させています。エラーが直り次第消します。-->
+        <% if @item.image.attached? %>
+        <%= image_tag @item.image, size: "250x200" %>
+        <% else %>
+        <% end %>
+      </p>
+    </div>
+    <div class="col-6">
+      <table class="table table-bordered">
+        <tr>
+          <th>商品名</th>
+          <td><%= @item.name %></td>
+        </tr>
+        <tr>
+          <th>商品説明</th>
+          <td><%= @item.explanation %></td>
+        </tr>
+        <tr>
+          <th>ジャンル</th>
+          <td><%= @item.genre.name %></td>
+        </tr>
+        <tr>
+          <th>税込価格<br>(税抜価格)</th>
+          <td><%= number_to_currency(@item.price, format: "%n") %>(<%= number_to_currency(@item.add_tax_price, format: "%n") %>)円</td>
+        </tr>
+        <tr>
+          <th>販売ステータス</th>
+          <td>
+            <% if @item.is_active %>
+              <div class="text-success font-weight-bold">販売中</div>
+            <% else %>
+              <div class="text-muted font-weight-bold">販売停止中</div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+    <p class="d-flex justify-content-center">
+      <%= link_to edit_admin_item_path(@item), class: "btn btn-success btn-lg" do%>
+        編集する
+      <% end %>
+    </p>
+</div>
