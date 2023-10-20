@@ -1,8 +1,7 @@
-<% obj.each do |items| %>
- 	<%= link_to obj_path(obj) do %>
-		<!--image-->
+<% obj.each do |item| %>
+  <%= link_to item_path(item) do %>
+    <!--image-->
   <% end %>
-	<%= obj.name %>
-  <%= obj.price %>
-    
+  <%= item.name %>
+  <%= item.price %>
 <% end %>
