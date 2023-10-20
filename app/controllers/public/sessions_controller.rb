@@ -15,7 +15,7 @@ protected
     ## 【処理内容3】
     redirect_to root_path
   elsif @customer.valid_password?(params[:customer][:password]) && !@customer.is_active
-    redirect_to new_customer_redistration_path
+    redirect_to new_customer_registration_path
   end
  end
 end
