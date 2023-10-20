@@ -1,12 +1,17 @@
 <div class="container">
-  <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
-    商品一覧
-  </p>
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
+      商品一覧
+    </p>
+    <p class="col-8 mt-5 text-right">
+      <%= link_to "+", new_admin_item_path, class: "btn btn-primary btn-circle shadow" %>
+    </p>
+  </div>
 </div>
 
-<p>
-  <%= link_to "+", new_admin_item_path, class: "btn btn-primary btn-circle m-1 shadow p-3 mb-5 bg-body-tertiary rounded float-right mr-5" %>
-</p>
+
+
+
 <div class="container">
 <div class="col-9 mx-auto">
 <table class='table table-hover table-inverse'>
