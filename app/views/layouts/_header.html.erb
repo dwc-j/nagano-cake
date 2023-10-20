@@ -14,51 +14,50 @@
         <div class="d-flex justify-content-between">
 
           <% if admin_signed_in? %>
-              <%= render 'layouts/admin_header' %>
-            <% elsif customer_signed_in? %>
-              <li>
-                <%= link_to customers_path, class: "btn btn-outline-secondary" do %>
-                  マイページ
-                <% end %>
-              </li>
-              <li>
-                <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
-                  商品一覧
-                <% end %>
-              </li>
-              <li>
-                <%= link_to cart_items_path, class: "btn btn-outline-secondary" do %>
-                  カート
-                <% end %>
-              </li>
-              <li>
-                <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
-                  ログアウト
-                <% end %>
-              </li>
-
-        <% else %>
-          <li>
-            <%= link_to about_path, class: "btn btn-outline-secondary" do %>
-              About
-            <% end %>
-          </li>
-          <li class="d-flex">
-            <%= link_to  public_items_path, class: "btn btn-outline-secondary" do %> <!--public_を追加-->
-              商品一覧
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
-              新規登録
-            <% end %>
-          </li>
-          <li>
-            <%= link_to new_customer_session_path ,class: "btn btn-outline-secondary" do %>
-              ログイン
-            <% end %>
-          </li>
-        <% end %>
+            <%= render 'layouts/admin_header' %>
+          <% elsif customer_signed_in?  %>
+            <li class="d-flex">
+              <%= link_to customers_path, class: "btn btn-outline-secondary" do %>
+                マイページ
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to  items_path, class: "btn btn-outline-secondary" do %>
+                商品一覧
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to cart_items_path, class: "btn btn-outline-secondary" do %>
+                カート
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary" do %>
+                ログアウト
+              <% end %>
+            </li>
+          <% else %>
+            <li class="d-flex">
+              <%= link_to about_path, class: "btn btn-outline-secondary" do %>
+                About
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to  public_items_path, class: "btn btn-outline-secondary" do %> <!--public_を追加-->
+                商品一覧
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
+                新規登録
+              <% end %>
+            </li>
+            <li class="d-flex">
+              <%= link_to new_customer_session_path ,class: "btn btn-outline-secondary" do %>
+                ログイン
+              <% end %>
+            </li>
+          <% end %>
         </ul>
       </div>
     </div>
