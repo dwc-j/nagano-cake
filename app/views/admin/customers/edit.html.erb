@@ -3,12 +3,16 @@
     <p class="col-4 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h4">
       <%= @customer.last_name %><%= @customer.first_name %>さんの会員情報編集
     </p>
+    <p class="col-6 mt-5 text-right">
+      <%= link_to '会員一覧ページに戻る', admin_customers_path, class: 'btn btn-outline-dark' %>
+    </p>
   </div>
 </div>
 
 <div class="container">
   <div class="row d-flex justify-content-center">
   <div class="col-7 d-flex justify-content-center align-items-center border ">
+    <%= render 'layouts/errors', obj: @customer %>
     <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
       <%= render "layouts/errors", obj: @customer %>
 
@@ -47,7 +51,7 @@
   <div class="font-weight-bold mt-3 ml-3 form-group">
     <%= f.label :address, "住所" %>
     </div>
-    <div class="form-row m-3">
+    <div class="m-3">
       <div class="form-inline ">
     <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control w-100" %>
   </div>
@@ -65,7 +69,7 @@
   <div class="font-weight-bold mt-3 ml-3 form-group">
     <%= f.label :email, "メールアドレス" %>
   </div>
-  <div class="form-row m-3">
+  <div class="m-3">
     <div class="form-inline ">
     <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class:"form-control w-100" %>
   </div>

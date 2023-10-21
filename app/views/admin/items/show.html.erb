@@ -14,11 +14,7 @@
   <div class="row">
     <div class="col-4">
       <p>
-        <!--とりあえず分岐させています。エラーが直り次第消します。-->
-        <% if @item.image.attached? %>
         <%= image_tag @item.image, size: "250x200" %>
-        <% else %>
-        <% end %>
       </p>
     </div>
     <div class="col-7">
