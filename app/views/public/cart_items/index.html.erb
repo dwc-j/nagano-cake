@@ -3,7 +3,7 @@
 </div>
 
 <div>
-	<%= link_to "カートを空にする", destroy_all_cart_items_path, method: :delete, "data-confirm" => "本当に空にしますか？" %>
+	<%= link_to "カートを空にする", destroy_all_public_cart_items_path, method: :delete, "data-confirm" => "本当に空にしますか？" %>
 </div>
 
 <table class='table'>
@@ -25,10 +25,10 @@
         </td>
         <td><%= @price_taxin %></td>
         <td>
-        	<%= form_with model: @cart_items, method: patch, lacal: true do |f| %>
+        	<%= form_with model: cart_item, method: :patch, local: true do |f| %>
     				<%= f.hidden_field :item_id, :value => @item.id %>
-    				<%= f.select :amount, [[1, 1], [2, 2]],[3, 3], [4, 4]],[5, 5], [6, 6]],[7, 7], [8, 8]],[9, 9], [10, 10]], { selected: @cart_item.amount } %>
-    				<%= f.submit '変更' class: 'btn btn-success'%>
+    				<%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]], { selected: @cart_item.amount } %>
+    				<%= f.submit '変更', class: 'btn btn-success' %>
 					<% end %>
         </td>
         <td><%= @subtotal %></td>
@@ -39,7 +39,7 @@
 </table>
 
 <div>
-	<%= link_to '買い物を続ける', items_path, class: "btn btn-sm btn-primary" %>
+	<%= link_to '買い物を続ける', public_items_path, class: "btn btn-sm btn-primary" %>
 </div>
 
 <div>
@@ -48,5 +48,5 @@
 </div>
 
 <div>
-	<%= link_to '情報入力に進む', new_order_path, class: "btn btn-sm btn-success" %>
+	<%= link_to '情報入力に進む', new_public_order_path, class: "btn btn-sm btn-success" %>
 </div>
