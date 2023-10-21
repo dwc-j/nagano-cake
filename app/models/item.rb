@@ -1,7 +1,10 @@
 class Item < ApplicationRecord
   # バリデーション
+  validates :image, presence: true
   validates :name, presence: true
+  validates :explanation, presence: true
   validates :price, presence: true
+  
 
   # アソシエーション
   belongs_to :genre

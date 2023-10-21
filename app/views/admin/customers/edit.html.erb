@@ -1,6 +1,3 @@
-<%= render 'layouts/flash' %>
-<%= render 'layouts/errors', obj: @customer %>
-
 <div class="container">
   <div class="row">
     <p class="col-4 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h4">
@@ -15,6 +12,7 @@
 <div class="container">
   <div class="row d-flex justify-content-center">
   <div class="col-7 d-flex justify-content-center align-items-center border ">
+    <%= render 'layouts/errors', obj: @customer %>
     <%= form_with model: @customer, url: admin_customer_path(@customer) do |f| %>
       <%= render "layouts/errors", obj: @customer %>
 
