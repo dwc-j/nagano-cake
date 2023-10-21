@@ -10,7 +10,7 @@ class Admin::GenresController < ApplicationController
       flash[:success] = "新しいジャンルが追加されました！"
       redirect_to admin_genres_path
     else
-      flash[:danger] = "ジャンルを追加することができませんでした。"
+      flash.now[:danger] = "ジャンルを追加することができませんでした。"
       @genres = Genre.all
       render 'index'
     end
@@ -26,7 +26,7 @@ class Admin::GenresController < ApplicationController
       flash[:success] = "ジャンル名がアップデートされました！"
       redirect_to admin_genres_path
     else
-      flash[:danger] = "ジャンル名の編集に失敗しました。"
+      flash.now[:danger] = "ジャンル名の編集に失敗しました。"
       render 'edit'
     end
   end
