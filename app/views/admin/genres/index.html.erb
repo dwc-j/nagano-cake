@@ -1,18 +1,25 @@
+<%= render 'layouts/flash' %>
+<%= render 'layouts/errors', obj: @genre %>
+
 <div class="container">
-  <div class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5">
-    <p>ジャンル一覧・追加</p>
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h5">
+      ジャンル一覧・追加
+    </p>
   </div>
 
 
-<div class="col-7">
-  <%= form_with model: @genre, url: admin_genres_path, local:true do |f| %>
-    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
-      <%= f.label :ジャンル名, class: "font-weight-bold mr-5" %>
-      <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control name mr-5 ml-5" %>
-      <%= f.submit :新規登録, class: 'btn btn-success ml-5' %>
-    </div>
-  <% end %>
-</div>
+
+  <div class="col-7">
+    <%= form_with model: @genre, url: admin_genres_path, local:true do |f| %>
+      <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+        <%= f.label :ジャンル名, class: "font-weight-bold mr-5" %>
+        <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control name mr-5 ml-5" %>
+        <%= f.submit :新規登録, class: 'btn btn-success ml-5' %>
+      </div>
+    <% end %>
+  </div>
+
 
 <div class="col-4">
   <table class="table">

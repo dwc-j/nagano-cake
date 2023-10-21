@@ -1,14 +1,24 @@
-<div class="container">
-    <div class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center ml-4">
-      <p>ジャンル編集</p>
-    </div>
+<%= render 'layouts/flash' %>
+<%= render 'layouts/errors', obj: @genre %>
 
-<div class="col-7">
-  <%= form_with model: @genre, url: admin_genre_path, local:true do |f| %>
-    <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
-      <%= f.label :ジャンル名, class: "font-weight-bold mr-5" %>
-      <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control name mr-5 ml-5" %>
-      <%= f.submit :変更を保存, class: 'btn btn-success ml-5' %>
-    </div>
-  <% end %>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h5">
+      ジャンル編集
+    </p>
+    <p class="col-8 mt-5 text-right">
+      <%= link_to 'ジャンル一覧ページに戻る', admin_genres_path, class: 'btn btn-outline-dark' %>
+    </p>
+  </div>
+
+
+  <div class="col-7">
+    <%= form_with model: @genre, url: admin_genre_path, local:true do |f| %>
+      <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
+        <%= f.label :ジャンル名, class: "font-weight-bold mr-5" %>
+        <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control name mr-5 ml-5" %>
+        <%= f.submit :変更を保存, class: 'btn btn-success ml-5' %>
+      </div>
+    <% end %>
+  </div>
 </div>

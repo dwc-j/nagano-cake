@@ -173,3 +173,11 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
+    
+    
+
+  devise:
+    registrations:
+      customer:
+        signed_up: "登録が完了しました。"
+      signed_up: "登録が完了しました。"
