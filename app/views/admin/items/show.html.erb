@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 ">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h5">
       商品詳細
     </p>
     <p class="col-8 mt-5 text-right">
@@ -21,7 +21,7 @@
         <% end %>
       </p>
     </div>
-    <div class="col-6">
+    <div class="col-7">
       <table class="table table-bordered">
         <tr>
           <th>商品名</th>
@@ -37,7 +37,7 @@
         </tr>
         <tr>
           <th>税込価格<br>(税抜価格)</th>
-          <td><%= number_to_currency(@item.add_tax_price, format: "%n") %>(<%= number_to_currency(@item.price, format: "%n") %>)円</td>
+          <td class="align-middle"><%= number_to_currency(@item.add_tax_price, format: "%n") %>(<%= number_to_currency(@item.price, format: "%n") %>)円</td>
         </tr>
         <tr>
           <th>販売ステータス</th>
