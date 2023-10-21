@@ -14,7 +14,7 @@ class Admin::ItemsController < ApplicationController
       flash[:success] = "新しい商品が追加されました！"
       redirect_to admin_items_path
     else
-      flash[:error] = "商品の追加に失敗しました。"
+      flash[:danger] = "商品の追加に失敗しました。"
       @genres = Genre.all
       render 'new'
     end
@@ -36,7 +36,7 @@ class Admin::ItemsController < ApplicationController
       flash[:success] = "商品詳細がアップデートされました！"
       redirect_to admin_item_path(@item)
     else
-      flash[:error] = "商品詳細の編集に失敗しました。"
+      flash[:danger] = "商品詳細の編集に失敗しました。"
       @genres = Genre.all
       render 'edit'
     end
