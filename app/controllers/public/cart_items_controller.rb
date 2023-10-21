@@ -3,9 +3,18 @@ class Public::CartItemsController < ApplicationController
 
   def index
     @cart_items = current_customer.cart_items.all
-    @price_taxin = cart_item.item.add_tax_price
-    @subtotal = @price_taxin * amount
-    @total_price += @subtotal
+
+    @total_price = 0
+    @cart_items.each do |cart_item|
+      item = Item.find(cart_item.item_id)
+      price_taxin = item.price * 1.1
+      subtotal = price_taxin * cart_item.amount
+    @total_price += subtotal
+    end
+
+    #@price_taxin = cart_item.item.add_tax_price
+    #@subtotal = @price_taxin * amount
+    #@total_price += @subtotal
     # @total_price = 0
     # @cart_items.each do |cart_item|
     #   item = Item.find(cart_item.item_id)
@@ -13,6 +22,7 @@ class Public::CartItemsController < ApplicationController
     #   subtotal = price_taxin * cart_item.amount
     #   @total_price += subtotal
     # end
+
   end
 
   def create
