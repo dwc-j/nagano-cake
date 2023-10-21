@@ -39,7 +39,7 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
   end
 
   namespace :admin do
-    resources :items
+    resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update]
