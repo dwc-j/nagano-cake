@@ -10,6 +10,13 @@ class Public::ItemsController < ApplicationController
   end
 
   def create
-
+    redirect_to public_items_path
   end
+
+  private
+
+  def item_params
+    params.require(:items).permit(:genre_id, :name, :explanation, :price, :is_active)
+  end
+
 end
