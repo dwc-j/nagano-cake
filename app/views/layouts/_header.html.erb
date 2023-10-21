@@ -17,7 +17,7 @@
             <%= render 'layouts/admin_header' %>
           <% elsif customer_signed_in?  %>
             <li class="d-flex">
-              <%= link_to public_customers_path, class: "btn btn-outline-secondary" do %>
+              <%= link_to public_customers_information_path, class: "btn btn-outline-secondary" do %>
                 マイページ
               <% end %>
             </li>
