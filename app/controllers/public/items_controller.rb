@@ -5,6 +5,11 @@ class Public::ItemsController < ApplicationController
 
   def show
     @item = Item.find(params[:id])
+    @price_taxin = @item.add_tax
     @cart_item = CartItem
+  end
+  
+  def create
+    
   end
 end

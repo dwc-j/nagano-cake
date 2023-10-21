@@ -1,17 +1,15 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-2'>
 			<div>
-				
+				<!--< render 'layouts/genre' >-->
 			</div>
 		</div>
-	</div>
 
-	<div class='row'>
-    <div class='col-md-9'>
-    	<h1>商品一覧</h1>
-    	<%= render partial: 'index', locals: { obj: @items } %> 
-    	
+    <div class='col-md-10'>
+    	<div class="my-3"><span class="h2">商品一覧</span> <span>(全<%= @items.count %>件)</span></div>
+    	<%= render partial: 'index', locals: { obj: @items } %>
+
     	<!--pagination-->
 
 		</div>

@@ -1,12 +1,12 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-3'>
+    <div class='col-md-2'>
 			<div>
 				<!--< render 'layouts/genre' >-->
 			</div>
 		</div>
 
-    <div class='col-md-9'>
+    <div class='col-md-10'>
 				<div>
 					<p>
 						ようこそ、ながのCAKEへ！</br>
@@ -16,12 +16,13 @@
 					</p>
 				</div>
 
-			<h2>新着商品</h2>
-			<!--< render 'items/index' >-->
-
-			<%= link_to public_items_path do %> <!--public_を追加-->
-				全ての商品を見る ≻
-			<% end %>
+			<h3 class="my-3">新着商品</h3>
+			<%= render partial: 'public/items/index', locals: { obj: @latest_items } %>
+			<div class="text-right">
+				<%= link_to public_items_path do %> <!--public_を追加-->
+					全ての商品を見る ≻
+				<% end %>
+			</div>
 		</div>
 	</div>
 </div>
