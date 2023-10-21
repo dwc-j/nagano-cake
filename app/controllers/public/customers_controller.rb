@@ -1,6 +1,7 @@
 class Public::CustomersController < ApplicationController
 
   before_action :authenticate_customer!
+  before_action :set_customer
 
   def show
     @customer = current_customer
@@ -20,17 +21,26 @@ class Public::CustomersController < ApplicationController
   end
 
   def unsubscribe
-    @customer = Customer.find(params[:id])
+    @customer = current_customer
   end
 
   def withdraw
-    @customer = Customer.find(params[:id])
-    @customer.update(is_deleted: true)
-    reset_session
-    redirect_to root_path
+    if @customer.update(is_active: false)
+      flash[:success] = "退会処理が完了しました。"
+      reset_session
+      redirect_to root_path
+    else
+    flash[:error] = "退会処理に失敗しました。"
+    render :show
+    end
   end
 
    private
+
+
+  def set_customer
+    @customer = current_customer
+  end
 
   def customer_params
     params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :email, :postal_code, :address, :telephone_number, :is_deleted)

@@ -1,23 +1,48 @@
-<h2>ログイン</h2>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
+      ログイン
+    </p>
+  </div>
+</div>
 
-<p>会員の方はこちらからログイン</p>
+<div class="container">
+<div class="row ml-5 mb-4">
+<p class="font-weight-bold bg-secondary text-light text-center m-3 w-25">
+  会員の方はこちらからログイン
+</p>
+</div>
+</div>
 
+<div class="row d-flex justify-content-center ">
+<div class="col-4">
 <%= form_with model: @customer, url: new_customer_session_path do |f| %>
-  <div class="field">
+  <div class="field form-row mb-4 font-weight-bold">
     <%= f.label :email, "メールアドレス" %>
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com" %>
+    <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder: "sample@example.com", class: "form-control" %>
   </div>
 
-  <div class="field">
+  <div class="field form-row mb-4 font-weight-bold">
     <%= f.label :password, "パスワード" %>
-    <%= f.password_field :password, autocomplete: "current-password" %>
+    <%= f.password_field :password, autocomplete: "current-password", class: "form-control" %>
   </div>
 
-  <div class="actions">
-    <%= f.submit "ログイン" %>
+  <div class="actions d-flex justify-content-center">
+    <%= f.submit "ログイン", class: "btn btn-primary col-4" %>
   </div>
 <% end %>
+</div>
+</div>
 
-
-<p>会員登録がお済みでない方</p>
-<p><%= link_to 'こちら', new_customer_registration_path %>から新規登録を行ってください</p>
+<div class="container">
+  <div class="row ml-5 mt-4 mb-4">
+    <p class="font-weight-bold bg-secondary text-light text-center m-3 col-3">
+      会員登録がお済みでない方
+    </p>
+  </div>
+    <div class="row">
+      <p class="col-12 d-flex justify-content-center">
+      <%= link_to 'こちら', new_customer_registration_path %>から新規登録を行ってください
+      </p>
+    </div>
+</div>

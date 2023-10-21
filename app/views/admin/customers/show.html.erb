@@ -1,11 +1,65 @@
-<h2><%= @customer.name %>さんの詳細情報</h2>
+<div class="container">
+  <div class="row">
+    <p class="col-3 font-weight-bold bg-secondary text-light text-center m-5 h5">
+      <%= @customer.last_name %><%= @customer.first_name %>さんの詳細情報
+    </p>
+    <p class="col-7 mt-5 text-right">
+      <%= link_to '会員一覧ページに戻る', admin_customers_path, class: 'btn btn-outline-dark' %>
+    </p>
+  </div>
+</div>
 
-<p>名前（姓）：<%= @customer.last_name %></p>
-<p>名前（名）：<%= @customer.first_name %></p>
-<p>フリガナ（セイ）：<%= @customer.last_name_kana %></p>
-<p>フリガナ（メイ）：<%= @customer.first_name_kana %></p>
-<p>郵便番号：<%= @customer.postal_code %></p>
-<p>住所：<%= @customer.address %></p>
+<div class="container">
+  <div class="row d-flex justify-content-center">
+    <div class="col-7">
+      <table class="table table-bordered">
+        <tr>
+          <th class="w-25">会員ID</th>
+          <td><%= @customer.id %></td>
+        </tr>
+        <tr>
+          <th>氏名</th>
+          <td><%= @customer.last_name %>　<%= @customer.first_name %></td>
+        </tr>
+        <tr>
+          <th>フリガナ</th>
+          <td><%= @customer.last_name_kana %><%= @customer.first_name_kana %></td>
+        </tr>
+        <tr>
+          <th>郵便番号</th>
+          <td><%= @customer.postal_code%></td>
+        </tr>
+        <tr>
+          <th>住所</th>
+          <td><%= @customer.address %></td>
+        </tr>
+        <tr>
+          <th>電話番号</th>
+          <td><%= @customer.telephone_number %></td>
+        </tr>
+        <tr>
+          <th>メールアドレス</th>
+          <td><%= @customer.email %></td>
+        </tr>
+        <tr>
+          <th>会員ステータス</th>
+          <td>
+            <% if @customer.is_active %>
+              <div class="text-success font-weight-bold">有効</div>
+            <% else %>
+              <div class="text-muted font-weight-bold">退会</div>
+            <% end %>
+          </td>
+        </tr>
+      </table>
 
-<%= link_to '編集する', edit_customer_path(@customer) %> 
-<%= link_to '注文履歴一覧', admin_homes_top_path %>
+    <p class="d-flex justify-content-center">
+      <%= link_to edit_admin_customer_path(@customer), class: "btn btn-success btn-lg mr-5" do%>
+        編集する
+      <% end %>
+      <%= link_to admin_order_path(@customer), class: "btn btn-primary btn-lg ml-5" do%>
+        注文履歴一覧を見る
+      <% end %>
+    </p>
+
+

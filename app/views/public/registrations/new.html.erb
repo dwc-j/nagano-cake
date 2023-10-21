@@ -8,12 +8,12 @@
 
 <div class="container">
   <div class="row d-flex justify-content-center">
-  <div class="col-7 d-flex justify-content-center align-items-center border ">
+  <div class="col-7 d-flex justify-content-center border ">
     <%= form_with model: @customer, url: customer_registration_path do |f| %>
       <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="font-weight-bold mt-3 ml-3">
-    名前<span class="badge badge-danger">必須</span>
+    名前
   </div>
    <div class="form-row m-3">
      <div class="form-inline text-secondary">
@@ -26,7 +26,7 @@
 
 
   <div class="font-weight-bold mt-3 ml-3">
-    フリガナ<span class="badge badge-danger">必須</span>
+    フリガナ
   </div>
   <div class="form-row m-3">
     <div class="form-inline text-secondary">
@@ -38,16 +38,16 @@
   </div>
 
   <div class="font-weight-bold mt-3 ml-3 form-group">
-    <%= f.label :email, "メールアドレス" %><span class="badge badge-danger">必須</span>
+    <%= f.label :email, "メールアドレス" %>
   </div>
-  <div class="form-row m-3">
+  <div class="m-3">
     <div class="form-inline ">
     <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class:"form-control w-100" %>
   </div>
   </div>
 
   <div class="font-weight-bold mt-3 ml-3 form-group">
-    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %><span class="badge badge-danger">必須</span>
+    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
     </div>
     <div class="form-row m-3">
       <div class="form-inline ">
@@ -56,16 +56,16 @@
   </div>
 
   <div class="font-weight-bold mt-3 ml-3 form-group">
-    <%= f.label :address, "住所" %><span class="badge badge-danger">必須</span>
+    <%= f.label :address, "住所" %>
     </div>
-    <div class="form-row m-3">
+    <div class="m-3">
       <div class="form-inline ">
     <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control w-100" %>
   </div>
   </div>
 
   <div class="font-weight-bold mt-3 ml-3 form-group">
-    <%= f.label :telephone_number, "電話番号(ハイフンなし)" %><span class="badge badge-danger">必須</span>
+    <%= f.label :telephone_number, "電話番号(ハイフンなし)" %>
     </div>
     <div class="form-row m-3">
       <div class="form-inline ">
