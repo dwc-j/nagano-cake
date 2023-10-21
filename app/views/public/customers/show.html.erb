@@ -1,43 +1,43 @@
-<h1>ようこそ <%= @costomer.last_name %>さん！</h1>
+<h1>ようこそ <%= @customer.last_name %>さん！</h1>
 
 <h2>登録情報</h2>
 
 <p>
   <strong>氏名:</strong>
-  <%= @costomer.last_name %> <%= @costomer.first_name %>
+  <%= @customer.last_name %> <%= @customer.first_name %>
 </p>
 
 <p>
   <strong>フリガナ:</strong>
-  <%= @costomer.last_name_kana %> <%= @costomer.first_name_kana %>
+  <%= @customer.last_name_kana %> <%= @customer.first_name_kana %>
 </p>
 
 <p>
   <strong>郵便番号:</strong>
-  <%= @costomer.postal_code %>
+  <%= @customer.postal_code %>
 </p>
 
 <p>
   <strong>住所:</strong>
-  <%= @costomer.address %>
+  <%= @customer.address %>
 </p>
 
 <p>
   <strong>電話番号:</strong>
-  <%= @costomer.telephone_number %>
+  <%= @customer.telephone_number %>
 </p>
 
 <p>
   <strong>メールアドレス:</strong>
-  <%= @costomer.email %>
+  <%= @customer.email %>
 </p>
 
-<%= link_to '編集する', edit_costomer_path(@costomer) %>
+<%= link_to '編集する', edit_public_customers_path %>
 
 <h2>配送先</h2>
 
-<%= link_to '一覧を見る', costomer_delivery_addresses_path(@costomer) %>　<%# 配送先　%>
+<%= link_to '一覧を見る', public_addresses_path %>　<%# 配送先　%>
 
 <h2>注文履歴</h2>
 
-<%= link_to '一覧を見る', costomer_orders_path(@costomer) %>
+<%= link_to '一覧を見る', public_orders_path %>
