@@ -6,7 +6,7 @@ class Public::CartItemsController < ApplicationController
 
     @total_price = 0
     @cart_items.each do |cart_item|
-      item = Item.find(cart_item.item_id)
+      item = Item.find(cart_item.item.id)
       price_taxin = item.price * 1.1
       subtotal = price_taxin * cart_item.amount
     @total_price += subtotal
@@ -63,7 +63,7 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
-    params.require(:cart_item).permit(:customer_id :item_id, :amount)
+    params.require(:cart_item).permit(:customer_id,:item_id, :amount)
   end
 
 end
