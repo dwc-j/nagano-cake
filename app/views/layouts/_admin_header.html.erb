@@ -1,3 +1,17 @@
+
+<header>
+  <div class="container text-center">
+    <div class="row">
+      <div class="col-3">
+        <li>
+    　     <%= link_to root_path, class: "border border-dark" do %>
+            ここにロゴ
+          <% end %>
+        </li>
+      </div>
+        <div class="col-6 justify-content-end">
+
+
           <li>
             <%= link_to admin_items_path, class: "btn btn-outline-secondary" do %>
               商品一覧
@@ -23,3 +37,10 @@
               ログアウト
             <% end %>
           </li>
+
+        <% end %>
+        </div>
+    </div>
+  </div>
+</header>
+
