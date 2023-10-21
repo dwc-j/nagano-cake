@@ -8,8 +8,8 @@ class Public::ItemsController < ApplicationController
     @price_taxin = @item.add_tax
     @cart_item = CartItem
   end
-  
+
   def create
-    
+
   end
 end
