@@ -9,7 +9,7 @@ class Public::CartItemsController < ApplicationController
       price_taxin = item.price * 1.1
       subtotal = price_taxin * cart_item.amount
     @total_price += subtotal
-   end
+    end
   end
   
   def update
