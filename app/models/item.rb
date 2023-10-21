@@ -9,7 +9,7 @@ class Item < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_one_attached :image
 
-  def add_tax
+  def add_tax_price
     (self.price * 1.10).round
   end
 

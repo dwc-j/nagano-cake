@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h5">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h5">
       商品一覧
     </p>
     <p class="col-8 mt-5 text-right">
@@ -14,7 +14,7 @@
 <div class="container">
 <div class="col-9 mx-auto">
 <table class='table table-hover table-inverse'>
-  <thead>
+  <thead class="thead-dark">
     <tr>
       <th>商品ID</th>
       <th>商品名</th>
@@ -46,4 +46,8 @@
   </tbody>
 </table>
 
-<p><%= paginate @items, theme: 'bootstrap-5' %></p>
+  <p class="d-flex justify-content-center">
+    <%= paginate @items, theme: 'bootstrap-5' %>
+  </p>
+ </div>
+</div>

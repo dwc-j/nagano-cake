@@ -1,8 +1,47 @@
-<h2>会員一覧</h2>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h5">
+      会員一覧
+    </p>
+  </div>
+</div>
 
-<% @customers.each do |customer| %>
-  <p>
-    <%= link_to customer.name, customer_path(customer) %> 
-    <%= customer.status ? "有効" : "退会" %>
+<div class="container">
+ <div class="col-9 mx-auto">
+  <table class='table table-hover table-inverse'>
+    <thead  class="thead-dark">
+      <tr>
+        <th>会員ID</th>
+        <th>氏名</th>
+        <th>メールアドレス</th>
+        <th>ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.id%></td>
+          <td class="text-body">
+            <%= link_to admin_customer_path(customer) do %>
+              <%= customer.last_name %><%= customer.first_name %>
+            <% end  %>
+            </td>
+          <td><%= customer.email%></td>
+          <td>
+            <% if customer.is_active %>
+              <div class="text-success font-weight-bold">有効</div>
+            <% else %>
+              <div class="text-muted font-weight-bold">退会</div>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  
+  <p class="d-flex justify-content-center">
+    <%= paginate @customers, theme: 'bootstrap-5' %>
   </p>
-<% end %>
+  
+ </div>
+</div>
