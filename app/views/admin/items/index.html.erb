@@ -12,6 +12,7 @@
 
 
 <div class="container">
+<div class="row">
 <div class="col-9 mx-auto">
 <table class='table table-hover table-inverse'>
   <thead class="thead-dark">
@@ -32,7 +33,7 @@
             <%= item.name %>
           <% end %>
         </td>
-        <td>￥<%= item.price %></td>
+        <td>￥<%= number_to_currency(item.price, format: "%n") %></td>
         <td><%= item.genre.name %></td>
         <td>
           <% if item.is_active %>
@@ -45,9 +46,12 @@
     <% end %>
   </tbody>
 </table>
-
-  <p class="d-flex justify-content-center">
+</div>
+</div>
+<div class="row d-flex justify-content-center">
+  <p>
     <%= paginate @items, theme: 'bootstrap-5' %>
   </p>
  </div>
 </div>
+
