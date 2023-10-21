@@ -1,3 +1,12 @@
+
+<% obj.each do |item| %>
+	<%= link_to public_item_path(item) do %>
+	  <%= image_tag item.image, size: "250x200" %>
+  <% end %></br>
+  <%= item.name %></br>
+	<%= item.price %>
+<% end %>
+
 <div class="container">
 	<div class="row">
 		<% obj.each do |item| %>
@@ -11,4 +20,5 @@
 		<% end %>
 	</div>
 </div>
+
 
