@@ -25,18 +25,22 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.all
     render 'index'
   end
+  
+ 
 
   def destroy
     cart_item = CartItem.find(params[:id])
     cart_item.destroy
     @cart_items = CartItem.all
-    render 'index'
+    redirect_to public_cart_items_path
   end
-
+  
   def destroy_all
-    CartItem.destroy_all
-    render 'index'
+    @cart_items = CartItem.where(member_id: current_member.id)
+    @cart_items.destroy_all
+    redirect_to public_cart_items_path
   end
+  
 
   private
 

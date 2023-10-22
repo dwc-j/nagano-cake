@@ -14,7 +14,8 @@ class Public::AddressesController < ApplicationController
   def create
     @address = current_customer.addresses.new(address_params)
     if @address.save
-      redirect_to public_addresses_path, notice: '配送先が正常に作成されました'
+      flash[:success] = '新しい配送先が作成されました！'
+      redirect_to public_addresses_path
     else
       @addresses = current_customer.addresses
       render :index
@@ -23,7 +24,8 @@ class Public::AddressesController < ApplicationController
 
   def update
     if @address.update(address_params)
-      redirect_to addresses_path, notice: '配送先が正常に更新されました'
+      flash[:success] = '配送先が更新されました！'
+      redirect_to addresses_path
     else
       render :edit
     end
@@ -31,7 +33,8 @@ class Public::AddressesController < ApplicationController
 
   def destroy
     @address.destroy
-    redirect_to addresses_path, notice: '配送先が正常に削除されました'
+    flash[:success] = '配送先が削除されました！'
+    redirect_to addresses_path
   end
 
   def set_address
