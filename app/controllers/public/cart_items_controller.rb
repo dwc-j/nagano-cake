@@ -28,8 +28,6 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.all
     render 'index'
   end
-  
- 
 
   def destroy
     cart_item = CartItem.find(params[:id])
@@ -37,12 +35,12 @@ class Public::CartItemsController < ApplicationController
     @cart_items = CartItem.all
     redirect_to public_cart_items_path
   end
-  
+
   def destroy_all
     CartItem.destroy_all
     redirect_to public_cart_items_path
   end
-  
+
 
   private
 
