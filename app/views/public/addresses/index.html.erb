@@ -19,7 +19,7 @@
 <% @addresses.each do |address| %>
   <p>
     <%= address.name %> <%= address.postal_code %> <%= address.address %> 
-    <%= link_to '編集する', edit_address_path(address) %> 
-    <%= link_to '削除する', address_path(address), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+    <%= link_to '編集する', public_edit_address_path(address) %> 
+    <%= link_to '削除する', public_address_path(address), method: :delete, data: { confirm: '本当に削除しますか？' } %>
   </p>
 <% end %>
