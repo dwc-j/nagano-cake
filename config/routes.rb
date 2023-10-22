@@ -5,16 +5,16 @@ devise_for :customers,skip: [:passwords] , controllers: {
   sessions: 'public/sessions'
 }
 
-# devise_scope :customer do
-#   get '/customers/sign_out' => 'public/sessions#destroy'
-# end
+devise_scope :customer do
+  get '/customers/sign_out' => 'public/sessions#destroy'
+end
 
 devise_for :admin, skip: [:registrations, :passwords] , controllers: {
   sessions: "admin/sessions"
 }
 
 devise_scope :admin do
-  get '/admins/sign_out' => 'admin/sessions#destroy'
+  get '/admins/sign_out', to: 'admin/sessions#destroy', as: 'admin_log_out'
 end
 
   root :to => "public/homes#top"
