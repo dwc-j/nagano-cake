@@ -40,13 +40,12 @@ end
     #   end
     # end
 
+    get '/cart_items/destroy_all' => 'cart_items#destroy_all'
+    delete '/cart_items/destroy_all' => 'cart_items#destroy_all'
+
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       member do
         get :destroy
-      end
-      collection do
-        get '/destroy_all' => 'cart_items#destroy_all'
-        delete '/destroy_all' => 'cart_items#destroy_all'
       end
     end
 
