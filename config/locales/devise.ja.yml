@@ -139,5 +139,25 @@ ja:
       not_found: は見つかりませんでした。
       not_locked: はロックされていません。
       not_saved:
-        one: エラーが発生したため %{resource} は保存されませんでした。
-        other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+        one:
+        other:
+
+      # not_saved:
+      #   one: エラーが発生したため %{resource} は保存されませんでした。
+      #   other: "%{count} 件のエラーが発生したため %{resource} は保存されませんでした。"
+
+  activerecord:
+    attributes:
+      customer:
+        last_name: 名前(姓)
+        first_name: 名前(名)
+        last_name_kana: フリガナ(セイ)
+        first_name_kana: フリガナ(メイ)
+        postal_code: 郵便番号
+        address: 住所
+        telephone_number: 電話番号
+        email: メールアドレス
+        password: パスワード
+        encrypted_password: パスワード
+    models:
+      customer: お客様情報
