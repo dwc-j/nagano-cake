@@ -44,9 +44,7 @@ class Public::CartItemsController < ApplicationController
       redirect_to public_cart_items_path
     elsif @cart_item.save
       @cart_items = current_customer.cart_items.all
-    # 　render 'index'
-    else
-      render 'index'
+      redirect_to public_cart_items_path
     end
   end
 
@@ -59,14 +57,13 @@ class Public::CartItemsController < ApplicationController
 
   def destroy
     cart_item = CartItem.find(params[:id])
-    cart_item.destroy(cart_item_params)
+    cart_item.destroy
     @cart_items = CartItem.all
     render 'index'
   end
 
   def destroy_all
-    cart_items = CartItem.all
-    cart_items.destroy_all
+    @cart_items.destroy_all
     render 'index'
   end
 

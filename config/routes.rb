@@ -24,27 +24,31 @@ end
 
 
   namespace :public, path: '' do #URLにpublicが入らないようにしました。
-  
+
     get "/customers/information" => "customers#show"
     get "/customers/information/edit" => "customers#edit"
     patch "/customers/information" => "customers#update"
     get "/customers/unsubscribe", to: "customers#unsubscribe"
     patch "/customers/withdraw", to: "customers#withdraw"
-  
+
     resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
-    
+
     # resource :customers, only: [:show, :edit, :update] do
     #   member do
     #     get :unsubscribe
     #     patch :withdraw
     #   end
     # end
-    
+
     resources :cart_items, only: [:index, :update, :destroy, :create] do
+      member do
+        get :destroy
+      end
       collection do
-        delete :destroy_all
+        delete '/destroy_all' => 'cart_items#destroy_all'
       end
     end
+
     resources :orders, only: [:new, :create, :index, :show] do
       collection do
         post :confirm
