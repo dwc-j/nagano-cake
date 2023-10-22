@@ -1,6 +1,7 @@
 <h1>配送先登録/一覧</h1>
 
-<%= form_for(@address) do |f| %>
+<%= form_for(@address, url: public_addresses_path) do |f| %>
+<!--%= form_for(@address) do |f| %-->
   <%= f.label :name, "宛名" %>
   <%= f.text_field :name %>
 
