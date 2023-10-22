@@ -1,27 +1,30 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-2'>
+    <div class='col-3 mt-5'>
 			<div>
 				<!--< render 'layouts/genre' >-->
 			</div>
 		</div>
 		
-		
-		
-    <div class='col-md-10'>
-				<div>
-					<p>
+    <div class='col-9 mt-5'>
+    	<div>
+    		<a></a><!--画像追加-->
+				<div class="d-flex justify-content-center">
+					<p class="border border-dark p-4">
 						ようこそ、ながのCAKEへ！</br>
 						このサイトは、ケーキ販売のECサイトになります。</br>
 						会員でない方も商品の閲覧はできますが、</br>
 						購入には会員登録が必要になります。
 					</p>
 				</div>
+			</div>
+		
+	
 
-			<h3 class="my-3">新着商品</h3>
-			<%= render partial: 'public/items/index', locals: { obj: @latest_items } %>
+			<h3 class="mb-4 mt-3 font-weight-bold">新着商品</h3>
+			  <%= render partial: 'public/items/index', locals: { obj: @latest_items } %>
 			<div class="text-right">
-				<%= link_to public_items_path do %> <!--public_を追加-->
+				<%= link_to public_items_path do %>
 					全ての商品を見る ≻
 				<% end %>
 			</div>
