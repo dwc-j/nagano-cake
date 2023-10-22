@@ -45,6 +45,7 @@ end
         get :destroy
       end
       collection do
+        get '/destroy_all' => 'cart_items#destroy_all'
         delete '/destroy_all' => 'cart_items#destroy_all'
       end
     end
