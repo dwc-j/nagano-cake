@@ -1,16 +1,21 @@
 <div class='container'>
   <div class='row'>
-    <div class='col-md-2'>
+    <div class='col-3 mt-5'>
 			<div>
 				<!--< render 'layouts/genre' >-->
 			</div>
 		</div>
 
-    <div class='col-md-10'>
+    <div class='col-9 mt-5'>
     	<div class="my-3"><span class="h2">商品一覧</span> <span>(全<%= @items.count %>件)</span></div>
     	<%= render partial: 'index', locals: { obj: @items } %>
-
-    	<!--pagination-->
+		
+		
+     <div class="d-flex justify-content-center">
+  		<p>
+    		<%= paginate @items, theme: 'bootstrap-5' %>
+  		</p>
+ 		</div>
 
 		</div>
 	</div>

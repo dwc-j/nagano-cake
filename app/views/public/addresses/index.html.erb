@@ -1,25 +1,46 @@
 <h1>配送先登録/一覧</h1>
 
-<%= form_for(@address, url: public_addresses_path) do |f| %>
-<!--%= form_for(@address) do |f| %-->
-  <%= f.label :name, "宛名" %>
-  <%= f.text_field :name %>
+<%= form_with model: @address, url: public_addresses_path, local: true do |f| %>
+  
+  <div class="field">
+    <%= f.label :postal_code, "郵便番号(ハイフンなし)" %>
+    <%= f.text_field :postal_code %>
+  </div>
 
-  <%= f.label :postal_code, "郵便番号" %>
-  <%= f.text_field :postal_code %>
+  <div class="field">
+    <%= f.label :address, "住所" %>
+    <%= f.text_field :address %>
+  </div>
+  
+  <div class="field">
+    <%= f.label :name, "宛名" %>
+    <%= f.text_field :name %>
+  </div>
+  
+  <div class="actions">
+    <%= f.submit :新規登録 %>
+  </div>
+  <% end %>
+  
+  <table class='table table-hover table-inverse'>
+  <thead class="thead-dark">
+    <tr>
+      <th>郵便番号</th>
+      <th>住所</th>
+      <th>名前</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @addresses.each do |address| %>
+      <tr>
+        <td><%= address.postal_code %></td>
+        <td><%= address.address %></td>
+        <td><%= address.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+</div>
+</div>
 
-  <%= f.label :address, "住所" %>
-  <%= f.text_field :address %>
-
-  <%= f.submit "登録する" %>
-<% end %>
-
-<h2>登録済みの配送先</h2>
-
-<% @addresses.each do |address| %>
-  <p>
-    <%= address.name %> <%= address.postal_code %> <%= address.address %> 
-    <%= link_to '編集する', public_edit_address_path(address) %> 
-    <%= link_to '削除する', public_address_path(address), method: :delete, data: { confirm: '本当に削除しますか？' } %>
-  </p>
-<% end %>
