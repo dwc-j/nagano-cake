@@ -1,9 +1,10 @@
 class Public::CartItemsController < ApplicationController
-  
+
   before_action :authenticate_customer!
 
   def index
     @cart_items = current_customer.cart_items.all
+<<<<<<< HEAD
 
     @total_price = 0
     @cart_items.each do |cart_item|
@@ -23,6 +24,14 @@ class Public::CartItemsController < ApplicationController
     #   subtotal = price_taxin * cart_item.amount
     #   @total_price += subtotal
     # end
+=======
+    #@cart_items.each do |cart_item|
+    # item = Item.find(cart_item.item_id)
+    # price_taxin = item.price * 1.1
+    # subtotal = price_taxin * cart_item.amount
+    # @total_price += subtotal
+    #end
+>>>>>>> 1c9f664c1d183573b741617a2d5512195ab559e8
 
   end
 
@@ -35,22 +44,22 @@ class Public::CartItemsController < ApplicationController
       redirect_to public_cart_items_path
     elsif @cart_item.save
       @cart_items = current_customer.cart_items.all
-    　render 'index'
+    # 　render 'index'
     else
       render 'index'
     end
   end
 
   def update
-    @cart_items = current_customer.cart_items.all
-    @item = Item.find(@cart_items.items.id)
-    @item.update
-    redirect_to cart_items_path
+    cart_item = CartItem.find(params[:id])
+    cart_item.update(cart_item_params)
+    @cart_items = CartItem.all
+    render 'index'
   end
 
   def destroy
     cart_item = CartItem.find(params[:id])
-    cart_item.destroy
+    cart_item.destroy(cart_item_params)
     @cart_items = CartItem.all
     render 'index'
   end
@@ -64,7 +73,11 @@ class Public::CartItemsController < ApplicationController
   private
 
   def cart_item_params
+<<<<<<< HEAD
     params.require(:cart_item).permit(:customer_id,:item_id, :amount)
+=======
+    params.require(:cart_item).permit(:customer_id, :item_id, :amount)
+>>>>>>> 1c9f664c1d183573b741617a2d5512195ab559e8
   end
 
 end
