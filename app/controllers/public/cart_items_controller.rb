@@ -8,7 +8,10 @@ class Public::CartItemsController < ApplicationController
 
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
-    if current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
+    if @cart_item.amount.nil?
+      flash[:danger] = "個数を選択してください。"
+      redirect_to request.referer
+    elsif current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
       cart_item.amount += params[:cart_item][:amount].to_i
       cart_item.save
@@ -36,8 +39,7 @@ class Public::CartItemsController < ApplicationController
   end
   
   def destroy_all
-    @cart_items = CartItem.where(member_id: current_member.id)
-    @cart_items.destroy_all
+    CartItem.destroy_all
     redirect_to public_cart_items_path
   end
   
