@@ -12,8 +12,8 @@
       </div>
 
       <div class="form-row d-flex justify-content-center mt-4">
-        <%= button_to '退会しない', public_customers_path(@customer), method: :get, class: "btn btn-primary mr-4 col-11" %>
-        <%= button_to '退会する', withdraw_public_customers_path(@customer), method: :patch, class: "btn btn-danger ml-4 col-12" %>
+        <%= button_to '退会しない', public_customers_information_path(@customer), method: :get, class: "btn btn-primary mr-4 col-11" %>
+        <%= button_to '退会する', public_customers_withdraw_path(@customer), method: :patch, class: "btn btn-danger ml-4 col-12" %>
       </div>
     </div>
   </div>
