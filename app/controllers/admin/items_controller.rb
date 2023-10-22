@@ -12,7 +12,7 @@ class Admin::ItemsController < ApplicationController
     @item = Item.new(item_params)
     if @item.save
       flash[:success] = "新しい商品が追加されました！"
-      redirect_to admin_items_path
+      redirect_to admin_item_path(@item)
     else
       flash.now[:danger] = "商品の追加に失敗しました。"
       @genres = Genre.all
