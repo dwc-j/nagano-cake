@@ -4,8 +4,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Address.new
-    @addresses ||= current_customer.addresses
-    @addresses_items = CartItem.where(member_id: current_member.id)
+    @addresses = current_customer.addresses
   end
 
   def edit
@@ -13,11 +12,11 @@ class Public::AddressesController < ApplicationController
   end
 
   def create
-    @address = Address.new(address_params)
+    @address = current_customer.addresses.new(address_params)
     if @address.save
-      redirect_to addresses_path, notice: '配送先が正常に作成されました'
+      redirect_to public_addresses_path, notice: '配送先が正常に作成されました'
     else
-      @addresses = Address.all
+      @addresses = current_customer.addresses
       render :index
     end
   end
