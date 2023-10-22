@@ -10,11 +10,11 @@
 <div class="row ml-5 pl-5">
   <div class="col-5 d-flex ml-5 pl-5">
     <h4 class="font-weight-bold ml-5 mr-3">登録情報</h4>
-    <%= link_to '編集する', public_customers_information_edit_path(@customer), class: "btn btn-success " %>
+    <%= link_to '編集する', public_customers_information_edit_path(@customer), class: "btn btn-success" %>
   </div>
 </div>
 
-<div class="row d-flex justify-content-center mt-3">
+<div class="row d-flex justify-content-center mt-3 mb-3">
   <div class="col-7">
     <table class="table table-bordered">
       <tr class="thead-light">
@@ -44,14 +44,18 @@
     </table>
   </div>
 </div>
-<%= link_to '編集する', public_customers_information_edit_path(@customer) %>
 
-<h2>配送先</h2>
-
-<%= link_to '一覧を見る', public_addresses_path(@customer) %>　<%# 配送先　%>
-
-<h2>注文履歴</h2>
-
-<%= link_to '一覧を見る', public_orders_path(@customer) %>
+  <div class="row ml-5 pl-5 mb-3">
+    <div class="col-5 d-flex ml-5 pl-5">
+      <h4 class="font-weight-bold ml-5 mr-3">配送先　</h4>
+      <%= link_to '一覧を見る', public_addresses_path(@customer), class: "btn btn-primary form-control w-50" %>
+    </div>
+  </div>
+  <div class="row ml-5 pl-5 mb-3">
+    <div class="col-5 d-flex ml-5 pl-5">
+      <h4 class="font-weight-bold ml-5 mr-3">注文履歴</h4>
+      <%= link_to '一覧を見る', public_orders_path(@customer), class: "btn btn-primary form-control w-50" %>
+    </div>
+  </div>
 
 </div>
