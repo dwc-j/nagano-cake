@@ -1,4 +1,7 @@
 class Admin::OrderDetailsController < ApplicationController
+  
+  before_action :authenticate_admin!
+  
   def update
     if @order_detail.update(order_detail_params)
       redirect_to order_path(@order_detail.order), notice: '制作ステータスが正常に更新されました'
