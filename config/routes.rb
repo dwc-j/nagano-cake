@@ -14,7 +14,7 @@ devise_for :admin, skip: [:registrations, :passwords] , controllers: {
 }
 
 devise_scope :admin do
-  get '/admins/sign_out' => 'admin/sessions#destroy'
+  get '/admins/sign_out', to: 'admin/sessions#destroy', as: 'admin_log_out'
 end
 
   root :to => "public/homes#top"
@@ -24,13 +24,22 @@ end
 
 
   namespace :public, path: '' do #URLにpublicが入らないようにしました。
+  
+    get "/customers/information" => "customers#show"
+    get "/customers/information/edit" => "customers#edit"
+    patch "/customers/information" => "customers#update"
+    get "/customers/unsubscribe", to: "customers#unsubscribe"
+    patch "/customers/withdraw", to: "customers#withdraw"
+  
     resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
-    resource :customers, only: [:show, :edit, :update] do
-      member do
-        get :unsubscribe
-        patch :withdraw
-      end
-    end
+    
+    # resource :customers, only: [:show, :edit, :update] do
+    #   member do
+    #     get :unsubscribe
+    #     patch :withdraw
+    #   end
+    # end
+    
     resources :cart_items, only: [:index, :update, :destroy, :create] do
       collection do
         delete :destroy_all

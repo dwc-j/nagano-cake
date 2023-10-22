@@ -32,12 +32,13 @@
   <%= @customer.email %>
 </p>
 
-<%= link_to '編集する', edit_public_customers_path %>
+<%= link_to '編集する', public_customers_information_edit_path(@customer) %>
 
 <h2>配送先</h2>
 
-<%= link_to '一覧を見る', public_addresses_path %>　<%# 配送先　%>
+<%= link_to '一覧を見る', public_addresses_path(@customer) %>　<%# 配送先　%>
 
 <h2>注文履歴</h2>
 
-<%= link_to '一覧を見る', public_orders_path %>
+<%= link_to '一覧を見る', public_orders_path(@customer) %>
+
