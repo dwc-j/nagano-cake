@@ -1,14 +1,14 @@
 <div class="container">
   <div class="row">
     <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h5">
-      注文履歴一覧
+      商品一覧
     </p>
   </div>
 <div>
 <div class="container">
   <div class="col-9 mx-auto">
   <table class='table'>
-    <thead class="bg-light">
+    <thead>
       <tr>
         <th>購入日時</th>
         <th>購入者</th>
@@ -21,12 +21,14 @@
         <% @orders.each do |order| %>
         <td>
           <%= link_to admin_order_path(order) do %>
-            <%= order.created_at.strftime('%Y年%m月%d日 %H:%M:%S') %>
+            <%= order.created_at %>
           <% end %>
         </td>
         <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
-        <td><%= order.order_details.sum(&:quantity) %>個 </td>
-        <td>
+        <% order.order_details.each do |order_detail| %>
+           <td><%= order_detail.amount %></td>
+           <td><%= order_detail.making_status %></td>
+        <% end %>
       </tr>
         <% end %>
     </tbody>
