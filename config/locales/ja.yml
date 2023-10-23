@@ -1,10 +1,16 @@
 ja:
+ activerecord:
   enums:
     order:
+     statuses:
+      入金待ち: "入金待ち"
+      入金確認: "入金確認"
+      製作中: "製作中"
+      発送準備中: "発送準備中"
+      発送済み: "発送済み"
       payment_method:
         credit_card: "クレジットカード"
         transfer: "銀行振込"
-  activerecord:
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
