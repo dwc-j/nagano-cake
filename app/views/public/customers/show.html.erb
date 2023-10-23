@@ -17,28 +17,28 @@
 <div class="row d-flex justify-content-center mt-3 mb-3">
   <div class="col-7">
     <table class="table table-bordered">
-      <tr class="thead-light">
-        <th class="w-25">氏名</th>
+      <tr>
+        <th  class="bg-light w-25">氏名</th>
         <td><%= @customer.last_name %> <%= @customer.first_name %></td>
       </tr>
-      <tr class="thead-light">
-        <th>フリガナ</th>
+      <tr>
+        <th class="bg-light">フリガナ</th>
         <td><%= @customer.last_name_kana %> <%= @customer.first_name_kana %></td>
       </tr>
-      <tr class="thead-light">
-        <th>郵便番号</th>
+      <tr>
+        <th class="bg-light">郵便番号</th>
         <td><%= @customer.postal_code %></td>
       </tr>
-      <tr class="thead-light">
-        <th>住所</th>
+      <tr>
+        <th class="bg-light">住所</th>
         <td><%= @customer.address %></td>
       </tr>
-      <tr class="thead-light">
-        <th>電話番号</th>
+      <tr>
+        <th class="bg-light">電話番号</th>
         <td><%= @customer.telephone_number %></td>
       </tr>
-      <tr class="thead-light">
-        <th>メールアドレス</th>
+      <tr>
+        <th class="bg-light">メールアドレス</th>
         <td><%= @customer.email %></td>
       </tr>
     </table>
