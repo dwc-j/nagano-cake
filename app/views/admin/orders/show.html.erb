@@ -15,18 +15,19 @@
 
 <% @order.order_details.each do |detail| %>
   <p>
-    <%= detail.item.name %> 
+    <%= detail.product.name %> 
     <%= detail.price %>円（税込） 
-    <%= detail.amount %>個 
-    小計：<%= detail.price * detail.amount %>円 
+    <%= detail.quantity %>個 
+    小計：<%= detail.price * detail.quantity %>円 
     制作ステータス：
-    <%= form_for([:admin,detail]) do |f| %>
+    
+    <%= form_for(detail) do |f| %>
       <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("activerecord.attributes.order_detail.making_statuses.#{k}"), k]} %>
       <%= f.submit "更新" %>
     <% end %>
   </p>
 <% end %>
 
-<p>商品合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.amount } %>円</p>
+<p>商品合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.quantity } %>円</p>
 <p>送料：800円</p>
-<p>請求合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.amount } + 800 %>円</p>
+<p>請求合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.quantity } + 800 %>円</p>
