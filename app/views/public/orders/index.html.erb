@@ -33,7 +33,10 @@
               <%= order_detail.item.name %>
           <% end %>
         </td>
-        <td><%= order.total_payment %>円</td>
+        <td>
+          <% total = order.total_payment + order.shipping_fee %>
+          <%= total %>円
+        </td>
         <td><%= order.status %></td>
         <td>
           <%= link_to '表示する', public_order_path(order.id) %>
