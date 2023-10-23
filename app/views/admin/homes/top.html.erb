@@ -27,7 +27,7 @@
         <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
         <% order.order_details.each do |order_detail| %>
            <td><%= order_detail.amount %></td>
-           <td><%= order_detail.making_status %></td>
+           <td><%= order_detail.order.status %></td>
         <% end %>
       </tr>
         <% end %>
