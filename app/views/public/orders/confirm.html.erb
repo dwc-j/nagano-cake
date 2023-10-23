@@ -50,26 +50,30 @@
   <tr>
     <th class="bg-light">請求金額</th>
     <% @order.total_payment = @order.shipping_fee + total %>
-    <td>￥<%= @order.total_payment %></td>
+    <td><u>￥<%= @order.total_payment %></u></td>
   </tr>
 </table>
 </div>
 </div>
 
-<div class="row">
-  <div class="col-12">
+<div class="row d-flex justify-content-center mt-4">
+  <div class="col-7 border border-dark">
     
-<table>
+<table class="table table-borderless">
   <tr>
-    <th class="h4 font-weight-bold m-4">支払方法</th>
+    <th class="lead font-weight-bold">支払方法</th>
     <td><%= @order.payment_method %></td>
   </tr>
   <tr>
-    <th class="h4 font-weight-bold">お届け先</th>
-    <td><%= @order.postal_code %> <%= @order.address %><%= @order.name %></td>
+    <th class="lead font-weight-bold">お届け先</th>
+    <td>〒<%= @order.postal_code %><br>
+      <%= @order.address %><br>
+      <%= @order.name %>
+    </td>
   </tr>
 </table>
-
+</div>
+</div>
 <div class="m-4 d-flex justify-content-center">
 <%= form_with model: @order, url: public_orders_path, method: :post, local: true do |f| %>
   <%= f.hidden_field :customer_id %>

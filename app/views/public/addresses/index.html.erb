@@ -6,7 +6,7 @@
   </div>
 
 <div class="row">
-  <div class="col-12">
+  <div class="col-7">
   <%= form_with model: @address, url: public_addresses_path, local: true do |f| %>
   <table>
     <tr>
@@ -15,14 +15,16 @@
     </tr>
     <tr>
       <th><%= f.label :address, "住所" %></th>
-      <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control" %></td>
+      <td><%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control", style: "width:220%" %></td>
     </tr>
     <tr>
       <th><%= f.label :name, "宛名" %></th>
       <td><%= f.text_field :name, placeholder: "令和道子", class: "form-control" %></td>
-      <td><%= f.submit :新規登録, class: "btn btn-success ml-4" %></td>
     </tr>  
   </table>
+  </div>
+  <div class="col-1 d-flex align-items-end">
+  <%= f.submit :新規登録, class: "btn btn-success ml-4" %>
   <% end %>
   </div>
 </div>
