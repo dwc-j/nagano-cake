@@ -42,8 +42,8 @@ class Public::OrdersController < ApplicationController
     @order.save
 
     current_customer.cart_items.each do |cart_item|
-　　　@ordered_item = OrderedItem.new #初期化
-　　  @ordered_item.order_id =  @order.id
+      @ordered_item = OrderDetail.new #初期化
+      @ordered_item.order_id =  @order.id
       @ordered_item.item_id = cart_item.item_id
       @ordered_item.amount = cart_item.amount
       @ordered_item.price_taxin = (cart_item.item.price * 1.1).floor
@@ -51,7 +51,7 @@ class Public::OrdersController < ApplicationController
     end
 
     current_customer.cart_items.destroy_all
-    redirect_to complete_orders_path
+    redirect_to complete_public_orders_path
   end
 
   def index
