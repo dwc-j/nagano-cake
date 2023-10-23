@@ -30,4 +30,4 @@
 
 <p>商品合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.amount } %>円</p>
 <p>送料：800円</p>
-<p>請求合計金額：：<%= @order.order_details.sum {|detail| detail.price * detail.amount } + 800 %>円</p>
+<p>請求合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.amount } + 800 %>円</p>
