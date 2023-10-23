@@ -3,6 +3,11 @@ class Admin::OrdersController < ApplicationController
   before_action :authenticate_admin!
   
   def show
+    @order = current_customer.orders.find_by(id: params[:id])
+  if @order.nil?
+    #flash[:alert] = "Order with id #{params[:id]} not found."
+    redirect_to admin_orders_path
+  end
   end
   
   def index

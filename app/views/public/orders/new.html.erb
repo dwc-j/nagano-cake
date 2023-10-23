@@ -22,7 +22,7 @@
   <%= f.label :address, "登録済住所から選択" %>
   <br>
   <%= f.select :address_id, options_from_collection_for_select(Address.all, :id, :address_display) %>
-
+  
   <%= f.radio_button :address_option, 2 %>
   <%= f.label :order_address, "新しいお届け先" %>
   <br>
