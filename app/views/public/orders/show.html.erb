@@ -48,7 +48,7 @@
   </tr>
   <% @order_details.each do |order_detail| %>
     <tr>
-      <td><%= order_detail.name %></td>
+      <td><%= order_detail.item_id %></td>
      	<td>
      	  <% order_price = order_detail.price * 1.1 %>
      	  <%= order_price %>
