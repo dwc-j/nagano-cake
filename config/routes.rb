@@ -55,7 +55,12 @@ end
         get :complete
       end
     end
-    resources :addresses, only: [:index, :edit, :create, :update, :destroy]
+    resources :addresses, only: [:index, :edit, :create, :update, :destroy] do
+      member do
+        get :destroy
+        get :update
+      end
+    end
   end
 
   namespace :admin do
