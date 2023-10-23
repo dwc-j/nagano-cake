@@ -1,36 +1,76 @@
-<h5>注文情報入力</h5>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
+      注文情報入力
+    </p>
+  </div>
 
-<%= form_with model: @order, url: "/orders/confirm", method: :post, local: true do |f| %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-9 border rounded p-3 shadow">
+        <%= form_with model: @order, url: "/orders/confirm", method: :post, local: true do |f| %>
 
-	<h5>支払い方法</h5>
-  <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>  
-  <%= f.label :payment_method, "クレジットカード" %>
-  <br>
-  <%= f.radio_button :payment_method, :銀行振込 %>  
-  <%= f.label :payment_method, "銀行振込" %>
+          <div class="col-12">
+            <div class="font-weight-bold mt-3 ml-3 h5">
+	          支払方法
+            </div>
+	        <div class="m-3 ml-5">
+	          <div class="col-12 from-inline mb-2">
+                <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
+                <%= f.label :payment_method, "クレジットカード", class:"mr-5 font-weight-bold" %>
+                <br>
+                <%= f.radio_button :payment_method, :銀行振込 %>
+                <%= f.label :payment_method, "銀行振込", class:"font-weight-bold" %>
+               </div>
+            </div>
 
-	<h5>お届け先</h5>
-  <%= f.radio_button :address_option, 0, checked: "checked" %>　
-  <%= f.label :address, "ご自身の住所" %>  
-  <br>
-  〒<%= current_customer.postal_code %> <%= current_customer.address %>
-  <br>
-  <%= current_customer.last_name %><%= current_customer.first_name %>
-  <br>
+            <div class="font-weight-bold mt-3 ml-3 h5">
+              お届け先
+	        </div>
+        	<div class="m-3 ml-5">
+              <div class="col-12 from-inline mb-3">
+                  <%= f.radio_button :address_option, 0, checked: "checked" %>
+                  <%= f.label :address, "ご自身の住所", class: "font-weight-bold" %>
+                  <br> 
+                  <div class="ml-3">
+                    〒<%= current_customer.postal_code %> <%= current_customer.address %>
+                    <%= current_customer.last_name %><%= current_customer.first_name %>
+                  </div>
+              </div>
+
+              <div class="col-12 from-inline mb-3">
+                <%= f.radio_button :address_option, 1 %>
+                <%= f.label :address, "登録済住所から選択", class: "font-weight-bold" %>
+                <br>
+                <div class="ml-3">
+                  <%= f.collection_select :customer_id, @addresses, :id, :address,include_blank: "登録してある配送先住所から選択", class:"form-control" %>
+                </div>
+              </div>
   
-  <%= f.radio_button :address_option, 1 %>
-  <%= f.label :address, "登録済住所から選択" %>
-  <br>
-  <%= f.collection_select :customer_id, @addresses, :id, :adress %>
-  
-  <%= f.radio_button :address_option, 2 %>
-  <%= f.label :order_address, "新しいお届け先" %>
-  <br>
-  <%= f.label :postal_code, "郵便番号(ハイフンなし)" %> <%= f.text_field :postal_code　%>
-  <br>
-  <%= f.label :address, "住所" %> <%= f.text_field :address %>
-  <br>
-  <%= f.label :name, "宛名" %> <%= f.text_field :name %>
-  <br>
-  <%= f.submit "確認画面へ進む" %>          
-<% end %>
+              <div class="col-12 from-inline mb-3">
+                <%= f.radio_button :address_option, 2 %>
+                <%= f.label :order_address, "新しいお届け先", class: "font-weight-bold" %>
+                <table>
+                  <tr>
+                    <td><%= f.label :postal_code, "郵便番号(ハイフンなし)　" %></td>
+                    <td><%= f.text_field :postal_code, class:"form-control " %></td>
+                  </tr>
+                  <tr>
+                    <td><%= f.label :address, "住所" %></td>
+                    <td><%= f.text_field :address, class:"form-control", style: "width:200%" %></td>
+                  </tr>
+                  <tr>
+                    <td><%= f.label :name, "宛名" %></td>
+                    <td><%= f.text_field :name, class:"form-control " %></td>
+                  </tr>
+                </table>
+              </div>
+            </div>
+            <div class="m-4 d-flex justify-content-center">
+              <%= f.submit "確認画面へ進む", class: "btn btn-info form-control w-50" %>
+            </div>
+          </div>
+        <% end %>     
+      </div>
+    </div>
+
+</div>
