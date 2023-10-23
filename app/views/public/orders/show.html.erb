@@ -50,12 +50,12 @@
     <tr>
       <td><%= order_detail.item.name %></td>
      	<td>
-     	  <% %>
-     	  <%= order_detail.item.price %>
+     	  <% price_taxin = order_detail.item.add_tax_price %>
+     	  <%= price_taxin %>
      	</td>
      	<td><%= order_detail.amount %></td>
       <td>
-        <% subtotal = order_detail.item.price * order_detail.amount %>
+        <% subtotal = price_taxin * order_detail.amount %>
         <%= subtotal %>
       </td>
     </tr>
