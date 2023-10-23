@@ -190,14 +190,14 @@ ja:
     attributes:
       genre:
         name: "ジャンル名"
-
-  # devise:
-  #   registrations:
-  #     customer:
-  #       signed_up: "登録が完了しました！"
-
-  # devise:
-  #   sessions:
-  #     customer:
-  #       signed_in: "ログインしました!"
-  #       signed_out: "ログアウトしました!"
+      address:
+        name: "宛名"
+        postal_code: "郵便番号"
+        address: "住所"
+      item: 
+        image: "商品画像"
+        name: "商品名"
+        explanation: "商品説明"
+        genre: "ジャンル"
+        price: "価格"
+      

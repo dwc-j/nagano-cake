@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h4">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
       会員情報編集
     </p>
   </div>
@@ -8,9 +8,9 @@
 
 <div class="container">
   <div class="row d-flex justify-content-center">
-  <div class="col-7 d-flex justify-content-center align-items-center border ">
+  <div class="col-7 d-flex justify-content-center align-items-center border rounded p-3 shadow">
 　<%= form_with model: @customer, url: public_customers_information_path, method: :patch do |f| %>
-  <!--%= render "layouts/errors" %>error発生中-->
+  <%= render "layouts/errors", obj: @customer %>
 
 
     <div class="font-weight-bold mt-3 ml-3">
@@ -34,7 +34,7 @@
     </div>
 
     <div class="font-weight-bold mt-3 ml-3 form-group">
-      <%= f.label :postal_code, "郵便番号" %>
+      <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
     </div>
     <div class="form-row m-3">
       <div class="form-inline ">
@@ -45,14 +45,14 @@
     <div class="font-weight-bold mt-3 ml-3 form-group">
      <%= f.label :address, "住所" %>
     </div>
-    <div class="form-row m-3">
+    <div class="m-3">
       <div class="form-inline ">
         <%= f.text_field :address, class: "form-control w-100" %>
       </div>
     </div>
 
     <div class="font-weight-bold mt-3 ml-3 form-group">
-     <%= f.label :telephone_number, "電話番号" %>
+     <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
     </div>
     <div class="form-row m-3">
       <div class="form-inline ">
@@ -63,18 +63,16 @@
     <div class="font-weight-bold mt-3 ml-3 form-group">
       <%= f.label :email, "メールアドレス" %>
     </div>
-    <div class="form-row m-3">
+    <div class="m-3">
       <div class="form-inline ">
         <%= f.email_field :email, class:"form-control w-100" %>
       </div>
     </div>
 
-    <div class="actions m-4 d-flex justify-content-center">
-    　<%= f.submit "編集内容を保存",class: "btn btn-success form-control w-50" %>
-  　</div>
+    <div class="actions mt-5 d-flex justify-content-center">
+    　<%= f.submit "編集内容を保存",class: "btn btn-success form-control mr-4" %>
 
-    <div class="actions m-4 d-flex justify-content-center">
-    　<%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger form-control w-50" %>
+    　<%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger form-control" %>
   　</div>
 
   　<% end %>

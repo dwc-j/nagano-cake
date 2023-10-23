@@ -10,7 +10,8 @@ class Public::ItemsController < ApplicationController
   end
 
   def create
-    redirect_to public_items_path
+    @item = Item.new(item_params)
+    @item.save
   end
 
   private
