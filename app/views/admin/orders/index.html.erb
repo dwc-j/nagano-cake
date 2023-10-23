@@ -2,9 +2,9 @@
 
 <% @orders.each do |order| %>
   <p>
-    <%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M:%S'), order_path(order) %> 
-    <%= order.customer.name %> 
-    <%= order.order_details.sum(&:quantity) %>個 
+    <%= link_to order.created_at.strftime('%Y年%m月%d日 %H:%M:%S'), order_path(order) %>
+    <%= order.customer.name %>
+    <%= order.order_details.sum(&:amount) %>個
     <%= order.status %>
   </p>
 <% end %>
