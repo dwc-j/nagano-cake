@@ -46,13 +46,16 @@
 	  <th>個数</th>
 	  <th>小計</th>
   </tr>
-  <% @cart_items.each do |cart_item| %>
+  <% @order_details.each do |order_detail| %>
     <tr>
-      <td><%= cart_item.items.name %></td>
-     	<td><%= (cart_item.items.price * 1.1) %></td>
-     	<td><%= cart_item.amount %></td>
+      <td><%= order_detail.name %></td>
+     	<td>
+     	  <% order_price = order_detail.price * 1.1 %>
+     	  <%= order_price %>
+     	</td>
+     	<td><%= order_detail.amount %></td>
       <td>
-        <% subtotal = ((cart_item.items.price * cart_item.amount) * 1.1) %>
+        <% subtotal = order_price * order_detail.amount %>
         <%= subtotal %>
       </td>
     </tr>
