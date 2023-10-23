@@ -15,13 +15,13 @@
 
 <% @order.order_details.each do |detail| %>
   <p>
-    <%= detail.product.name %> 
+    <%= detail.item.name %> 
     <%= detail.price %>円（税込） 
-    <%= detail.quantity %>個 
-    小計：<%= detail.price * detail.quantity %>円 
+    <%= detail.amount %>個 
+    小計：<%= detail.price * detail.amount %>円 
     制作ステータス：
     
-    <%= form_for(detail) do |f| %>
+    <%= form_with model: detail, url: admin_order_detail_path, method: :patch  do |f| %>
       <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("activerecord.attributes.order_detail.making_statuses.#{k}"), k]} %>
       <%= f.submit "更新" %>
     <% end %>
