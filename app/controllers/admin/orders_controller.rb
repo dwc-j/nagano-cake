@@ -16,8 +16,9 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
+    @order = Order.find(params[:id])
     if @order.update(order_params)
-      redirect_to order_path(@order), notice: '注文ステータスが正常に更新されました'
+      redirect_to admin_order_path(@order), notice: '注文ステータスが正常に更新されました'
     else
       render :show
     end
