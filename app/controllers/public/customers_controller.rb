@@ -15,7 +15,7 @@ class Public::CustomersController < ApplicationController
      @customer = current_customer
     if @customer.update(customer_params)
       flash[:success] = "会員情報がアップデートされました！"
-      redirect_to public_customers_information_path(@customer)
+      redirect_to public_customers_information_path
     else
       flash[:danger] = "会員情報の更新に失敗しました。"
       render :edit
