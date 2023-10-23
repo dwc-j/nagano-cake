@@ -6,7 +6,7 @@
 				  <%= image_tag item.image, size: "200x200", class: "img-fluid", alt: "image" %>
 			  <% end %></br>
 			  <p class="ml-2 mt-2 font-weight-bold"><%= item.name %></p>
-				<p class="ml-2 font-weight-bold">￥<%= number_to_currency(item.price, format: "%n") %></p>
+				<p class="ml-2 font-weight-bold"><%= number_to_currency(item.price, unit: "￥", strip_insignificant_zeros: true) %></p>
 			</div>
 		<% end %>
 	</div>

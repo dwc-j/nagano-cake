@@ -35,7 +35,7 @@
         </td>
         <td>
           <% total = order.total_payment + order.shipping_fee %>
-          <%= total %>円
+          <%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %>円
         </td>
         <td><%= order.status %></td>
         <td>
