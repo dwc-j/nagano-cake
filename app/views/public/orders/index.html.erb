@@ -37,7 +37,7 @@
           <% total = order.total_payment + order.shipping_fee %>
           <%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %>円
         </td>
-        <td><%= order.status %></td>
+        <td><%= order.status_i18n %></td>
         <td>
           <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
         </td>

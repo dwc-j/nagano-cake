@@ -15,11 +15,15 @@
             </div>
 	        <div class="m-3 ml-5">
 	          <div class="col-12 from-inline mb-2">
-                <%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>
-                <%= f.label :payment_method, "クレジットカード", class:"mr-5 font-weight-bold" %>
+                <!--%= f.radio_button :payment_method, :クレジットカード, checked: "checked" %>-->
+                <!--%= f.label :payment_method, "クレジットカード", class:"mr-5 font-weight-bold" %>-->
+                <%= f.radio_button :payment_method, Order.payment_methods.key(0), checked: "checked" %>
+                <%= f.label :payment_method, Order.payment_methods_i18n[:credit_card], value: Order.payment_methods.key(0), class:"mr-5 font-weight-bold" %>
                 <br>
-                <%= f.radio_button :payment_method, :銀行振込 %>
-                <%= f.label :payment_method, "銀行振込", class:"font-weight-bold" %>
+                <!--%= f.radio_button :payment_method, :銀行振込 %>-->
+                <!--%= f.label :payment_method, "銀行振込", class:"font-weight-bold" %>-->
+               <%= f.radio_button :payment_method, Order.payment_methods.key(1) %>
+               <%= f.label :payment_method, Order.payment_methods_i18n[:transfer], value: Order.payment_methods.key(1), class:"mr-5 font-weight-bold" %>
                </div>
             </div>
 
