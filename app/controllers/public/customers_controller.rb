@@ -32,7 +32,7 @@ class Public::CustomersController < ApplicationController
       reset_session
       redirect_to root_path
     else
-    flash[:danger] = "退会処理に失敗しました。"
+    flash.now[:danger] = "退会処理に失敗しました。"
     render :show
     end
   end

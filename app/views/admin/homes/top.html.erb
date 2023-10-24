@@ -21,14 +21,13 @@
         <% @orders.each do |order| %>
         <td>
           <%= link_to admin_order_path(order) do %>
-            <%= order.created_at %>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
           <% end %>
         </td>
         <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
-        <% order.order_details.each do |order_detail| %>
-           <td><%= order_detail.amount %></td>
-           <td><%= order_detail.making_status %></td>
-        <% end %>
+        <% total_amount = order.order_details.sum(:amount) %>
+           <td><%= total_amount %></td>
+           <td><%= order.status %></td>
       </tr>
         <% end %>
     </tbody>

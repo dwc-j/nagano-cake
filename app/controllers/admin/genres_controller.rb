@@ -29,7 +29,7 @@ class Admin::GenresController < ApplicationController
       flash[:success] = "ジャンル名がアップデートされました！"
       redirect_to admin_genres_path
     else
-      flash.now[:danger] = "ジャンル名の編集に失敗しました。"
+      flash.now[:danger] = "ジャンル名の編集ができませんでした。"
       render 'edit'
     end
   end

@@ -39,7 +39,7 @@ class Admin::ItemsController < ApplicationController
       flash[:success] = "商品詳細がアップデートされました！"
       redirect_to admin_item_path(@item)
     else
-      flash.now[:danger] = "商品詳細の編集に失敗しました。"
+      flash.now[:danger] = "商品内容の編集ができませんでした。"
       @genres = Genre.all
       render 'edit'
     end

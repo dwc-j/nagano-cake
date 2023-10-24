@@ -10,6 +10,7 @@
         <%= form_with model: @order, url: "/orders/confirm", method: :post, local: true do |f| %>
 
           <div class="col-12">
+            <%= render '/layouts/errors', obj: @order %>
             <div class="font-weight-bold mt-3 ml-3 h5">
 	          支払方法
             </div>
