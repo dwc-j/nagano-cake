@@ -25,6 +25,7 @@ class Public::OrdersController < ApplicationController
         @order.address = ship.address
         @order.name = ship.name
       end
+
     elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
@@ -33,6 +34,7 @@ class Public::OrdersController < ApplicationController
         flash.now[:danger] = "入力されていない項目があります。"
         render 'new'
       end
+
     else
       render 'new'
     end
