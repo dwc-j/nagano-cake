@@ -19,9 +19,9 @@ class Public::AddressesController < ApplicationController
       redirect_to public_addresses_path
     else
       flash.now[:danger] = '配送先の追加に失敗しました。'
-      render 'index'
       @customer = current_customer
       @addresses = @customer.addresses
+      render 'index'
     end
   end
 
@@ -40,7 +40,7 @@ class Public::AddressesController < ApplicationController
   def destroy
     @address = Address.find(params[:id])
     @address.destroy
-    flash[:success] = '配送先が削除されました！'
+    flash[:success] = '配送先が削除されました。'
     redirect_to public_addresses_path
   end
 

@@ -20,7 +20,7 @@ class Admin::CustomersController < ApplicationController
       flash[:success] = "会員情報がアップデートされました！"
       redirect_to admin_customer_path(@customer)
     else
-      flash.now[:danger] = "会員情報のアップデートに失敗しました。"
+      flash.now[:danger] = "会員情報のアップデートができませんでした。"
       render 'edit'
     end
   end
