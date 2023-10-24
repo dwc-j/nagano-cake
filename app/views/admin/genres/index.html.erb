@@ -1,4 +1,4 @@
-<%= render 'layouts/errors', obj: @genre %>
+
 
 <div class="container">
   <div class="row">
@@ -11,6 +11,7 @@
 
   <div class="col-7">
     <%= form_with model: @genre, url: admin_genres_path, local:true do |f| %>
+    <%= render 'layouts/errors', obj: @genre %>
       <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
         <%= f.label :ジャンル名, class: "font-weight-bold mr-5" %>
         <%= f.text_field :name, placeholder: "ジャンル名を入力", class: "form-control name mr-5 ml-5" %>
