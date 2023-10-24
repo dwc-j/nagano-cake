@@ -30,9 +30,9 @@
   <% end %>
   </div>
 </div>
-</div>
 
-<div class="row d-flex justify-content-between">
+
+<div class="row">
   <div class="col-10">
     <% if current_customer.addresses.exists? %>
     <table class='table table-hover table-inverse table-bordered mt-4 ml-4'>
@@ -41,11 +41,10 @@
           <th>郵便番号</th>
           <th>住所</th>
           <th>宛名</th>
-          <th></th>
+          <th class="w-25"></th>
         </tr>
       </thead>
       <tbody>
-        <% if @addresses.present? %>
           <% @addresses.each do |address| %>
             <tr>
               <td><%= address.postal_code %></td>
@@ -57,7 +56,6 @@
               </td>
             </tr>
           <% end %>
-        <% end %>
       </tbody>
     </table>
     <% else %>
@@ -65,4 +63,6 @@
     <% end %>
   </div>
 </div>
+</div>
+
 
