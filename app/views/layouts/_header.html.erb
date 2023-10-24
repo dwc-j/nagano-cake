@@ -34,6 +34,9 @@
             <li class="d-flex">
               <%= link_to public_cart_items_path, class: "btn btn-outline-secondary" do %>
                 カート
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
+                <% cart_item.items.count %>
+               </span>
               <% end %>
             </li>
             <li class="d-flex">
