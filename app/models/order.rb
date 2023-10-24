@@ -8,12 +8,12 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_one_attached :image
 
-    enum status: {
-    "waiting_for_payment":0,
-    "payment_confirmation":1,
-    "is_making":2,
-    "preparation_for_shipping":3,
-    "already_shipped":4
+  enum status: {
+    "waiting_for_payment": 0,
+    "payment_confirmation": 1,
+    "is_making": 2,
+    "preparation_for_shipping": 3,
+    "already_shipped": 4
   }
 
   enum payment_method: ["クレジットカード", "銀行振込"]
