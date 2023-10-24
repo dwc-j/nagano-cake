@@ -17,11 +17,11 @@
     </div>
     <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
       <%= f.label :商品名　　　　, class: "mr-4" %>
-      <%= f.text_field :name, placeholder: "商品名を入力", class: "form-control name" %>
+      <%= f.text_field :name, placeholder: "商品名を入力", class: "form-control w-100" %>
     </div>
     <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
       <%= f.label :商品説明　　　, class: "mr-4" %>
-      <%= f.text_area :explanation, rows:'6', placeholder: "商品説明を入力", class: "form-control explanation" %>
+      <%= f.text_area :explanation, rows:'6', placeholder: "商品説明を入力", class: "form-control w-100" %>
     </div>
     <div class="form-group text-nowrap mt-3 mb-3">
       <%= f.label :ジャンル　　　, class: "mr-4" %>
@@ -29,7 +29,7 @@
     </div>
     <div class="form-group d-flex justify-content-between text-nowrap mt-3 mb-3">
       <%= f.label :税抜価格　　　, class: "mr-4" %>
-      <%= f.text_field :price, placeholder: "1000", class: "form-control form-control-sm price" %>円
+      <%= f.text_field :price, placeholder: "1000", class: "form-control form-control-sm w-100" %>円
     </div>
     <div class="form-group">
       <%= f.label :is_active, "販売ステータス　" %>
