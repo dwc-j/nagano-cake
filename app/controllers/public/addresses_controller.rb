@@ -19,9 +19,9 @@ class Public::AddressesController < ApplicationController
       redirect_to public_addresses_path
     else
       flash[:danger] = '配送先の追加に失敗しました。'
+      render 'index'
       @customer = current_customer
-      @addresses = current_customer.addresses
-      render :index
+      @addresses = @customer.addresses
     end
   end
 

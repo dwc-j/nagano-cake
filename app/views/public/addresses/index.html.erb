@@ -5,6 +5,8 @@
     </p>
   </div>
 
+  <%= render '/layouts/errors', obj: @address %>
+
 <div class="row">
   <div class="col-7">
   <%= form_with model: @address, url: public_addresses_path, local: true do |f| %>
@@ -20,7 +22,7 @@
     <tr>
       <th><%= f.label :name, "宛名" %></th>
       <td><%= f.text_field :name, placeholder: "令和道子", class: "form-control" %></td>
-    </tr>  
+    </tr>
   </table>
   </div>
   <div class="col-1 d-flex align-items-end">
@@ -41,16 +43,18 @@
         </tr>
       </thead>
       <tbody>
-        <% @addresses.each do |address| %>
-          <tr>
-            <td><%= address.postal_code %></td>
-            <td><%= address.address %></td>
-            <td><%= address.name %></td>
-            <td>
-              <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success mr-2" %>
-              <%= link_to "削除する", public_address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
-            </td>
-          </tr>
+        <% if @addresses.present? %>
+          <% @addresses.each do |address| %>
+            <tr>
+              <td><%= address.postal_code %></td>
+              <td><%= address.address %></td>
+              <td><%= address.name %></td>
+              <td>
+                <%= link_to "編集する", edit_public_address_path(address), class: "btn btn-success mr-2" %>
+                <%= link_to "削除する", public_address_path(address), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-danger" %>
+              </td>
+            </tr>
+          <% end %>
         <% end %>
       </tbody>
     </table>

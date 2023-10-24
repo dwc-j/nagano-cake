@@ -17,7 +17,7 @@ class Public::CustomersController < ApplicationController
       flash[:success] = "会員情報がアップデートされました！"
       redirect_to public_customers_information_path
     else
-      flash[:danger] = "会員情報の更新に失敗しました。"
+      flash.now[:danger] = "会員情報の更新に失敗しました。"
       render :edit
     end
   end
