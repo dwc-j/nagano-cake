@@ -1,4 +1,11 @@
-<h5>注文履歴一覧</h5>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
+      注文履歴一覧
+    </p>
+  </div>
+</div>
+
 
 <% if @orders.count == 0 %>
   <div class='mx-auto max-w-3xl'>
@@ -8,8 +15,10 @@
     </div>
   </div>
 <% else %>
-  <table class='table'>
-  <thead>
+<div class="row d-flex justify-content-center">
+  <div class="col-10">
+  <table class='table table-bordered'>
+  <thead class="bg-light">
     <tr>
       <th>注文日</th>
       <th colspan="4">配送先</th>
@@ -22,23 +31,24 @@
   <tbody>
     <% @orders.each do |order| %>
       <tr>
-        <td><%= order.created_at.strftime('%Y/%m/%d') %></td>
+        <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
         <td colspan="4">
           〒<%= order.postal_code %></br>
           <%= order.address %></br>
           <%= order.name %>
         </td>
-        <td>
+        <div>
+        <td class="align-middle">
           <% order.order_details.each do |order_detail| %>
               <%= order_detail.item.name %></br>
           <% end %>
         </td>
-        <td>
+        <td class="align-middle">
           <% total = order.total_payment + order.shipping_fee %>
           <%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %>円
         </td>
-        <td><%= order.status %></td>
-        <td>
+        <td class="align-middle"><%= order.status %></td>
+        <td class="align-middle">
           <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
         </td>
       </tr>
