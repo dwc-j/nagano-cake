@@ -19,6 +19,7 @@ end
 
   root :to => "public/homes#top"
   get "/about" => "public/homes#about"
+  get "/genre/search" => "public/searches#genre_search"
 
   get "admin" => "admin/homes#top"
 
