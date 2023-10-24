@@ -7,8 +7,8 @@
           <% end %>
         </li>
       </div>
-      
-      
+
+
       <div class="col-3 d-flex align-items-center">
         <% if customer_signed_in? %>
           ようこそ、<%= current_customer.last_name %>さん!
@@ -34,9 +34,11 @@
             <li class="d-flex">
               <%= link_to public_cart_items_path, class: "btn btn-outline-secondary" do %>
                 カート
-                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white">
-                <% cart_item.items.count %>
+                <% if current_customer.cart_items.map(&:amount).any?%>
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger text-white", style="position:relative; transform: translateY(-25%);">
+                <%= current_customer.cart_items.map(&:amount).sum %>
                </span>
+               <% end %>
               <% end %>
             </li>
             <li class="d-flex">
@@ -51,7 +53,7 @@
               <% end %>
             </li>
             <li class="d-flex">
-              <%= link_to public_items_path, class: "btn btn-outline-secondary" do %> 
+              <%= link_to public_items_path, class: "btn btn-outline-secondary" do %>
                 商品一覧
               <% end %>
             </li>
