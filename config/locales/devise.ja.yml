@@ -161,8 +161,7 @@ ja:
         encrypted_password: パスワード
     models:
       customer: お客様情報
-      
-      
+
   activerecord:
     attributes:
       genre:

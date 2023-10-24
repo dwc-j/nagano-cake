@@ -1,6 +1,6 @@
 class Order < ApplicationRecord
   # バリデーション
-  validates :postal_code, presence: true
+  validates :postal_code, length: {is: 7}, numericality: { only_integer: true}
   validates :address, presence: true
   validates :name, presence: true
 
