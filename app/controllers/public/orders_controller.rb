@@ -16,15 +16,24 @@ class Public::OrdersController < ApplicationController
       @order.name = current_customer.last_name + current_customer.first_name
 
     elsif params[:order][:address_option] == "1"
-      ship = Address.find(params[:order][:address_id])
-      @order.postal_code = ship.postal_code
-      @order.address = ship.address
-      @order.name = ship.name
+      ship = Address.find_by(id: params[:order][:address_id])
+      if ship.nil?
+        flash.now[:danger] = "登録済住所がありません。"
+        render 'new'
+      else
+        @order.postal_code = ship.postal_code
+        @order.address = ship.address
+        @order.name = ship.name
+      end
 
     elsif params[:order][:address_option] == "2"
       @order.postal_code = params[:order][:postal_code]
       @order.address = params[:order][:address]
       @order.name = params[:order][:name]
+      if [:name, :postal_code, :address].any? { |attr| @order.send(attr).blank? }
+        flash.now[:danger] = "入力されていない項目があります。"
+        render 'new'
+      end
 
     else
       render 'new'
