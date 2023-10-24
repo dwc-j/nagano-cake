@@ -9,7 +9,7 @@ class Public::OrdersController < ApplicationController
 
   def confirm
     @order = Order.new(order_params)
-
+    
     if params[:order][:address_option] == "0"
       @order.postal_code = current_customer.postal_code
       @order.address = current_customer.address
@@ -18,7 +18,7 @@ class Public::OrdersController < ApplicationController
     elsif params[:order][:address_option] == "1"
       ship = Address.find_by(id: params[:order][:address_id])
       if ship.nil?
-        flash.now[:danger] = "登録済住所がありません。"
+        flash.now[:danger] = "登録済住所の欄が空です。"
         render 'new'
       else
         @order.postal_code = ship.postal_code
@@ -36,6 +36,7 @@ class Public::OrdersController < ApplicationController
       end
 
     else
+      flash.now[:danger] = "入力が完了していない項目があります。"
       render 'new'
     end
 
@@ -57,7 +58,7 @@ class Public::OrdersController < ApplicationController
         @order_detail.price = cart_item.item.price
         @order_detail.save
       end
-
+      flash[:success] = 'カートを空にしました。'
       current_customer.cart_items.destroy_all
       redirect_to complete_public_orders_path
     else

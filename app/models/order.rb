@@ -8,6 +8,7 @@ class Order < ApplicationRecord
   has_many :order_details, dependent: :destroy
   has_one_attached :image
 
+
     enum status: {
     "waiting_for_payment": 0,
     "payment_confirmation": 1,

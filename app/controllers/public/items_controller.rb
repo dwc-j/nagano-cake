@@ -1,9 +1,11 @@
 class Public::ItemsController < ApplicationController
   def index
+    @genres = Genre.all
     @items = Item.all.page(params[:page]).per(8)
   end
 
   def show
+    @genres = Genre.all
     @item = Item.find(params[:id])
     @price_taxin = @item.add_tax_price
     @cart_item = CartItem

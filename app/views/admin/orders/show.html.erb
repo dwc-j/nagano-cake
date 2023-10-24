@@ -1,33 +1,109 @@
-<h2><%= @order.customer.last_name + @order.customer.first_name %>さんの注文詳細</h2>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
+      注文履歴詳細
+    </p>
+  </div>
+</div>
 
-<p>購入者：<%= @order.customer.last_name + @order.customer.first_name %></p>
-<p>注文日：<%= @order.created_at.strftime('%Y年%m月%d日') %></p>
-<p>配送先：<%= @order.address %></p>
-<p>支払方法：<%= @order.payment_method_i18n %></p>
 
-<%= form_for([:admin, @order]) do |f| %>
-  <%= f.label :status, "注文ステータス" %><br />
+<div class="container">
+<div class="row">
+<div class="col-9 mx-auto">
+<table class='table table-bordered'>
+    <tr>
+<th class="bg-light w-25">購入者</th>
+<td><u><%= @order.customer.last_name + @order.customer.first_name %></u></td>
+</tr>
+  <th class="bg-light">注文日</th>
+  <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+</tr>
+<tr>
+  <th class="bg-light">配送先</th>
+  <td>
+    〒<%= @order.postal_code %><br>
+    <%= @order.address %><br>
+    <%= @order.name %>
+  </td>
+</tr>
+<tr>
+  <th class="bg-light">支払方法</th>
+  <td><%= @order.payment_method %></td>
+</tr>
+<tr>
+  <%= form_for([:admin, @order]) do |f| %>
+  <th class="bg-light">
+  <%= f.label :status, "注文ステータス" %>
+  </th>
+  <td>
   <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
-  <%= f.submit "更新" %>
-<% end %>
+  <%= f.submit "更新", class: "btn btn-success btn-sm ml-4" %>
+  </td>
+  <% end %>
+</tr>
+</table>
 
-<h3>注文商品一覧</h3>
+<!--<p>支払方法：%= @order.payment_method, Order.payment_method.keys.map {|k| [I18n.t("activerecord.attributes.order.payment_method.#{k}"), k]} %></p>-->
+</div>
+</div>
+</div>
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
+      注文商品一覧
+    </p>
+  </div>
 
-<% @order.order_details.each do |detail| %>
-  <p>
-    <%= detail.item.name %>
-    <%= detail.price %>円（税込）
-    <%= detail.amount %>個
-   小計：<%= detail.price * detail.amount %>円
-    制作ステータス：
+<div class="row">
+<div class="col-9">
+<table class='table table-bordered'>
 
-    <%= form_for([:admin,detail]) do |f| %>
-      <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
-      <%= f.submit "更新" %>
-    <% end %>
-  </p>
-<% end %>
+    <thead>
+    <tr>
+      <th>商品名</th>
+      <th>単価(税込)</th>
+      <th>数量</th>
+      <th>小計</th>
+      <th>製作ステータス</th>
+      <th></th>
+    </tr>
+    </thead>
+    <% @order.order_details.each do |detail| %>
+    <tbody>
+      <tr>
+        <td><%= detail.item.name %></td>
+        <td><%= number_to_currency(detail.price, unit: "¥", strip_insignificant_zeros: true) %></td>
+        <td><%= detail.amount %></td>
+        <td><%= number_to_currency(detail.price * detail.amount, unit: "¥", strip_insignificant_zeros: true) %></td>
+        <%= form_for([:admin,detail]) do |f| %>
+        <td>
+      　 <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+        </td>
+        <td class="text-center">
+          <%= f.submit "更新", class: "btn btn-success btn-sm" %>
+        </td>
+        <% end %>
+      </tr>
+    </tbody>
+     <% end %>
+  </table>
+</div>
+<div class="col-3 d-flex align-items-end mb-3">
+  <table>
+    <tr>
+      <th>商品合計</th>
+      <td><%= number_to_currency(@order.order_details.sum {|detail| detail.price * detail.amount}, format: "%u%n", unit: "", strip_insignificant_zeros: true ) %>円</td>
+    </tr>
+    <tr>
+      <th>送料</th>
+      <td>800円</td>
+    </tr>
+    <tr>
+      <th>請求合計金額　</th>
+      <td><%= number_to_currency(@order.order_details.sum {|detail| detail.price * detail.amount} + 800 , unit: "", strip_insignificant_zeros: true ) %>円</td>
+    </tr>
+  </table>
+</div>
+</div>
+</div>
 
-<p>商品合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.amount } %>円</p>
-<p>送料：800円</p>
-<p>請求合計金額：<%= @order.order_details.sum {|detail| detail.price * detail.amount } + 800 %>円</p>
