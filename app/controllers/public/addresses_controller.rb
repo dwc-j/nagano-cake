@@ -4,7 +4,7 @@ class Public::AddressesController < ApplicationController
 
   def index
     @address = Address.new
-    @addresses = current_customer.addresses
+    @addresses = current_customer.addresses.all
   end
 
   def edit
@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
       redirect_to public_addresses_path
     else
       flash.now[:danger] = '配送先の追加に失敗しました。'
-      @addresses = current_customer.addresses
+      @addresses = current_customer.addresses.all
       render 'index'
     end
   end
@@ -47,7 +47,7 @@ class Public::AddressesController < ApplicationController
   end
 
   def address_params
-    params.require(:address).permit(:name, :postal_code, :address)
+    params.require(:address).permit(:customer_id, :name, :postal_code, :address)
   end
 
 end
