@@ -5,6 +5,8 @@
 <p>配送先：<%= @order.address %></p>
 <p>支払方法：<%= @order.payment_method %></p>
 
+<!--<p>支払方法：%= @order.payment_method, Order.payment_method.keys.map {|k| [I18n.t("activerecord.attributes.order.payment_method.#{k}"), k]} %></p>-->
+
 <%= form_for([:admin, @order]) do |f| %>
   <%= f.label :status, "注文ステータス" %><br />
   <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("activerecord.attributes.order.statuses.#{k}"), k]} %>

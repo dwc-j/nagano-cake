@@ -161,3 +161,20 @@ ja:
         encrypted_password: パスワード
     models:
       customer: お客様情報
+      
+      
+  activerecord:
+    attributes:
+      genre:
+        name: "ジャンル名"
+      address:
+        name: "宛名"
+        postal_code: "郵便番号"
+        address: "住所"
+      item:
+        image: "商品画像"
+        name: "商品名"
+        explanation: "商品説明"
+        genre: "ジャンル"
+        price: "価格"
+
