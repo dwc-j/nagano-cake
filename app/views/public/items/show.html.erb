@@ -19,7 +19,7 @@
     		</div>
    		<div style="top: 40px; position:relative;">
    			<span  class="h5 font-weight-bold">
-   				<%= number_to_currency(@price_taxin, unit: "¥", strip_insignificant_zeros: true) %>
+   				￥<%= number_to_currency(@price_taxin, unit: "", strip_insignificant_zeros: true) %>
    			</span>
    			(税込)
    		</div>

@@ -32,7 +32,7 @@
           </td>
           <td class="align-middle">
             <% @price_taxin = cart_item.item.add_tax_price %>
-            <%= number_to_currency(@price_taxin, unit: "¥", strip_insignificant_zeros: true) %>
+            ￥<%= number_to_currency(@price_taxin, unit: "", strip_insignificant_zeros: true) %>
           </td>
           <td class="align-middle">
           	<%= form_with model: cart_item, url: public_cart_item_path(cart_item), method: :patch, local: true do |f| %>
@@ -43,7 +43,7 @@
           </td>
           <td class="align-middle">
             <% @subtotal = @price_taxin * cart_item.amount %>
-            <%= number_to_currency(@subtotal, unit: "¥", strip_insignificant_zeros: true) %>
+            ￥<%= number_to_currency(@subtotal, unit: "", strip_insignificant_zeros: true) %>
             <% @total_price += @subtotal %>
           </td>
           <td class="align-middle text-center"><%= link_to '削除する', public_cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
@@ -61,7 +61,7 @@
       <table class="table table-bordered">
       <tr>
   	    <th class="bg-light" scope="col" style="width: 3%">合計金額</th>
-  	    <td scope="col" style="width: 2%"><%= number_to_currency(@total_price, unit: "¥", strip_insignificant_zeros: true) %></td>
+  	    <td scope="col" style="width: 2%">￥<%= number_to_currency(@total_price, unit: "", strip_insignificant_zeros: true) %></td>
   	  </tr>
      </div>
     </table>
