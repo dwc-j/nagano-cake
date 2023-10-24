@@ -1,23 +1,21 @@
 ja:
- activerecord:
-  attributes:
+  enums:
     order:
-       statuses:
-         waiting_for_payment: "入金待ち"
-         payment_confirmation: "入金確認"
-         is_making: "製作中"
-         preparation_for_shipping: "発送準備中"
-         already_shipped: "発送済み"
-       payment_method:
-         credit_card: "クレジットカード"
-         transfer: "銀行振込"
+      status:
+        waiting_for_payment: "入金待ち"
+        payment_confirmation: "入金確認"
+        is_making: "製作中"
+        preparation_for_shipping: "発送準備中"
+        already_shipped: "発送済み"
+      payment_method:
+        credit_card: "クレジットカード"
+        transfer: "銀行振込"
     order_detail:
-      making_statuses:
+      making_status:
         unable: "着手不可"
         waiting: "製作待ち"
         making: "製作中"
         completed: "製作完了"
-      
     errors:
       messages:
         record_invalid: 'バリデーションに失敗しました: %{errors}'
