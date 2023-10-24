@@ -27,7 +27,7 @@ ja:
     - 金
     - 土
     abbr_month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -53,7 +53,7 @@ ja:
       long: "%Y年%m月%d日(%a)"
       short: "%m/%d"
     month_names:
-    - 
+    -
     - 1月
     - 2月
     - 3月
@@ -110,8 +110,8 @@ ja:
       less_than: は%{count}より小さい値にしてください
       less_than_or_equal_to: は%{count}以下の値にしてください
       model_invalid: 'バリデーションに失敗しました: %{errors}'
-      not_a_number: は数値で入力してください
-      not_an_integer: は整数で入力してください
+      not_a_number: は半角数字で入力してください
+      not_an_integer: は半角数字で入力してください
       odd: は奇数にしてください
       other_than: は%{count}以外の値にしてください
       present: は入力しないでください
@@ -191,7 +191,7 @@ ja:
       long: "%Y/%m/%d %H:%M"
       short: "%m/%d %H:%M"
     pm: 午後
-    
+
   activerecord:
     attributes:
       genre:
@@ -200,10 +200,9 @@ ja:
         name: "宛名"
         postal_code: "郵便番号"
         address: "住所"
-      item: 
+      item:
         image: "商品画像"
         name: "商品名"
         explanation: "商品説明"
         genre: "ジャンル"
         price: "価格"
-      
