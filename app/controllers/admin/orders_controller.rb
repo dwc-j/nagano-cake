@@ -19,7 +19,7 @@ class Admin::OrdersController < ApplicationController
     @order = Order.find(params[:id])
     if @order.update(order_params)
        flash[:success] = '注文ステータスが更新されました！'
-      redirect_to admin_order_path(@order) 
+      redirect_to admin_order_path(@order)
     else
       flash.now[:danger] = '注文ステータスの更新ができませんでした。'
       render :show
