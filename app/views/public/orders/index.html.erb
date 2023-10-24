@@ -45,8 +45,8 @@
         </td>
         <td class="align-middle">
           <% total = order.total_payment + order.shipping_fee %>
-          <%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %>円
-        </td>
+          ￥<%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %>
+          </td>
 
         <td class="align-middle"><%= order.status_i18n %></td>
         <td class="align-middle">

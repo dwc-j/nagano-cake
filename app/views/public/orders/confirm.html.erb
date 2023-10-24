@@ -24,11 +24,11 @@
         <%= image_tag cart_item.item.image, size: "50x30", class: "img-fluid", alt: "image" %>
         <%= cart_item.item.name %>
      	</td>
-     	<td class="align-middle"><%= number_to_currency(cart_item.item.add_tax_price, unit: "", strip_insignificant_zeros: true) %></td>
+     	<td class="align-middle">￥<%= number_to_currency(cart_item.item.add_tax_price, unit: "", strip_insignificant_zeros: true) %></td>
      	<td class="align-middle"><%= cart_item.amount %></td>
       <td class="align-middle">
         <% subtotal = cart_item.item.add_tax_price * cart_item.amount %>
-        <%= number_to_currency(subtotal, unit: "", strip_insignificant_zeros: true) %>
+        ￥<%= number_to_currency(subtotal, unit: "", strip_insignificant_zeros: true) %>
       </td>
     </tr>
     <% total += subtotal %>
@@ -41,16 +41,16 @@
 	<tr>
     <th class="bg-light">送料</th>
     <% @order.shipping_fee = 800 %>
-    <td><%= number_to_currency(@order.shipping_fee, unit: "", strip_insignificant_zeros: true) %></td>
+    <td>￥<%= number_to_currency(@order.shipping_fee, unit: "", strip_insignificant_zeros: true) %></td>
   </tr>
   <tr>
     <th class="bg-light">商品合計</th>
-    <td><%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %></td>
+    <td>￥<%= number_to_currency(total, unit: "", strip_insignificant_zeros: true) %></td>
   </tr>
   <tr>
     <th class="bg-light">請求金額</th>
     <% @order.total_payment = @order.shipping_fee + total %>
-    <td><%= number_to_currency(@order.total_payment, unit: "", strip_insignificant_zeros: true) %></td>
+    <td>￥<%= number_to_currency(@order.total_payment, unit: "", strip_insignificant_zeros: true) %></td>
   </tr>
 </table>
 </div>
