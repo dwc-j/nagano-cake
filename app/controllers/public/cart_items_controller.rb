@@ -9,7 +9,7 @@ class Public::CartItemsController < ApplicationController
   def create
     @cart_item = current_customer.cart_items.new(cart_item_params)
     if @cart_item.amount.nil?
-      flash[:danger] = "個数を選択してください。"
+      flash.now[:danger] = "個数を選択してください。"
       redirect_to request.referer
     elsif current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id]).present?
       cart_item = current_customer.cart_items.find_by(item_id: params[:cart_item][:item_id])
@@ -25,7 +25,7 @@ class Public::CartItemsController < ApplicationController
   def update
     cart_item = CartItem.find(params[:id])
     cart_item.update(cart_item_params)
-    @cart_items = CartItem.all
+    @cart_items = current_customer.cart_items.all
     render 'index'
   end
 

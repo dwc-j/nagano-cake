@@ -18,7 +18,7 @@ class Public::AddressesController < ApplicationController
       flash[:success] = '新しい配送先が作成されました！'
       redirect_to public_addresses_path
     else
-      flash[:danger] = '配送先の追加に失敗しました。'
+      flash.now[:danger] = '配送先の追加に失敗しました。'
       render 'index'
       @customer = current_customer
       @addresses = @customer.addresses
@@ -31,7 +31,7 @@ class Public::AddressesController < ApplicationController
       flash[:success] = '配送先が更新されました！'
       redirect_to public_addresses_path
     else
-      flash[:danger] = '配送先の更新に失敗しました'
+      flash.now[:danger] = '配送先の更新に失敗しました'
       @customer = current_customer
       render :edit
     end
