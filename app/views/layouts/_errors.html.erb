@@ -1,5 +1,5 @@
 <% if obj.errors.any? %>
-    <%= obj.errors.count %> 件のエラーにより保存出来ません :
+    <!--%= obj.errors.count %> 件のエラーにより保存出来ません :-->
     <ul>
       <% obj.errors.full_messages.each do |message| %>
         <li><%= message %></li>
