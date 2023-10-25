@@ -65,6 +65,13 @@
           <% end %>
         </ul>
       </div>
+      <div class="mt-3 text-right">
+        <%= form_with url: public_search_path, method: :get, local: true do |f| %>
+          <%= f.label :query, "Search" %>
+          <%= f.text_field :query %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
     </div>
   </nav>
 </header>

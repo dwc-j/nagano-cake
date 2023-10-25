@@ -6,4 +6,10 @@ class Public::SearchesController < ApplicationController
 		items = Item.where(genre_id: genre_id)
 		@items = items.page(params[:page]).per(8)
 	end
+	
+  def search
+    @results = Item.where('name LIKE ?', "%#{params[:query]}%").page(params[:page]).per(8)
+    @genres = Genre.all
+  end
+  
 end

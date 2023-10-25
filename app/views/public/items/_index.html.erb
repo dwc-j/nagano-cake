@@ -3,7 +3,7 @@
 		<% obj.each do |item| %>
 			<div class="mr-1">
 				<%= link_to public_item_path(item) do %>
-				  <%= image_tag item.image, size: "200x200", class: "img-fluid", alt: "image" %>
+				  <%= image_tag item.image, size: "200x150" %>
 			  <% end %></br>
 			  <p class="ml-2 mt-2 font-weight-bold"><%= item.name %></p>
 				<p class="ml-2 font-weight-bold">￥<%= number_to_currency(item.price, unit: "", strip_insignificant_zeros: true) %></p>
