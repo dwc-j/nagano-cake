@@ -31,7 +31,8 @@ end
     patch "/customers/information" => "customers#update"
     get "/customers/unsubscribe", to: "customers#unsubscribe"
     patch "/customers/withdraw", to: "customers#withdraw"
-
+    get 'search', to: 'searches#search'
+    
     resources :items, only: [:index, :show]  #nameスペースの外側にあったのを中に入れました。
 
     # resource :customers, only: [:show, :edit, :update] do
@@ -63,12 +64,14 @@ end
       end
     end
   end
-
+ 
   namespace :admin do
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
     resources :orders, only: [:show, :update, :index] do
+    get 'search', to: 'searches#search'
+    
       member do
         get :individual
       end
