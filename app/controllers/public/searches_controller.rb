@@ -8,7 +8,8 @@ class Public::SearchesController < ApplicationController
 	end
 	
   def search
-    @results = Item.where('name LIKE ?', "%#{params[:query]}%")
+    @results = Item.where('name LIKE ?', "%#{params[:query]}%").page(params[:page]).per(8)
+    @genres = Genre.all
   end
   
 end
