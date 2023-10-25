@@ -2,14 +2,21 @@ class Admin::OrdersController < ApplicationController
 
   before_action :authenticate_admin!
 
+  def individual
+    customer_id = params[:id]
+    @customer = Customer.find(customer_id)
+    orders = Order.where(customer_id: customer_id)
+    @orders = orders.page(params[:page]).per(10)
+  end
+
   def show
     @order = Order.find(params[:id])
     @order_detail = OrderDetail.find(params[:id])
     @customer = @order.customer
-  if @order.nil?
-    #flash[:alert] = "Order with id #{params[:id]} not found."
-    redirect_to admin_orders_path
-  end
+    if @order.nil?
+      #flash[:alert] = "Order with id #{params[:id]} not found."
+      redirect_to admin_orders_path
+    end
   end
 
   def index

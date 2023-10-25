@@ -1,0 +1,39 @@
+<div class="container">
+  <div class="row">
+    <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h5">
+      <%= @customer.last_name %><%= @customer.first_name %>さんの注文履歴
+    </p>
+  </div>
+<div>
+<div class="container">
+  <div class="col-9 mx-auto">
+  <table class='table'>
+    <thead>
+      <tr>
+        <th>購入日時</th>
+        <th>注文個数</th>
+        <th>注文ステータス</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <% @orders.each do |order| %>
+        <td>
+          <%= link_to admin_order_path(order) do %>
+            <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
+          <% end %>
+        </td>
+        <% total_amount = order.order_details.sum(:amount) %>
+        <td><%= total_amount %></td>
+        <td><%= order.status_i18n %></td>
+      </tr>
+        <% end %>
+    </tbody>
+  </table>
+
+  <div class="center-block">
+    <%= paginate @orders, theme: 'bootstrap-5' %>
+  </div>
+  </div>
+</div>
+</div>
