@@ -1,0 +1,13 @@
+<h1>検索結果</h1>
+
+<% if @results.empty? %>
+  <p>検索した商品は見つかりませんでした。</p>
+<% else %>
+<% @results.each do |item| %>
+  <div>
+    <h2><%= item.name %></h2>
+    <%= image_tag item.image if item.image.present? %>
+    <!-- 他の商品情報 -->
+  </div>
+<% end %>
+<% end %>
