@@ -6,11 +6,12 @@
 			</div>
 		</div>
 
-<% if @results.empty? %>
-  <p>検索した商品は見つかりませんでした。</p>
-<% else %>
+
 
     <div class='col-9 mt-5'>
+      <% if @results.empty? %>
+  <p class="font-weight-bold d-flex justify-content-center">検索した商品は見つかりませんでした。</p>
+<% else %>
     	<div class="my-3"><span class="h2">商品一覧</span> <span>(全<%= @results.count %>件)</span></div>
     	<div class="container">
       	<div class="row">
