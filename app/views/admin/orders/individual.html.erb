@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <p class="col-2 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h5">
-      注文履歴一覧
+      <%= @customer.last_name %><%= @customer.first_name %>さんの注文履歴
     </p>
   </div>
 <div>
@@ -11,7 +11,6 @@
     <thead>
       <tr>
         <th>購入日時</th>
-        <th>購入者</th>
         <th>注文個数</th>
         <th>注文ステータス</th>
       </tr>
@@ -24,10 +23,9 @@
             <%= order.created_at.strftime('%Y/%m/%d %H:%M:%S') %>
           <% end %>
         </td>
-        <td><%= order.customer.last_name %> <%= order.customer.first_name %></td>
         <% total_amount = order.order_details.sum(:amount) %>
-           <td><%= total_amount %></td>
-           <td><%= order.status_i18n %></td>
+        <td><%= total_amount %></td>
+        <td><%= order.status_i18n %></td>
       </tr>
         <% end %>
     </tbody>

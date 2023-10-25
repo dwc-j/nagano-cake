@@ -68,7 +68,11 @@ end
     resources :items, except: [:destroy]
     resources :genres, only: [:index, :create, :edit, :update]
     resources :customers, only: [:index, :show, :edit, :update]
-    resources :orders, only: [:show, :update, :index]
+    resources :orders, only: [:show, :update, :index] do
+      member do
+        get :individual
+      end
+    end
     resources :order_details, only: [:update]
   end
 
