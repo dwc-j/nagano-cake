@@ -1,4 +1,5 @@
 class Order < ApplicationRecord
+ after_update :update_order_details_status, if: :saved_change_to_status?
   # バリデーション
   validates :postal_code, length: {is: 7}, numericality: { only_integer: true}
   validates :address, presence: true
@@ -19,8 +20,18 @@ class Order < ApplicationRecord
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
+
+
+ private
+
+ def update_order_details_status
+  if self.status == "payment_confirmation"
+   self.order_details.update_all(making_status: "waiting")
+  end
+ end
+
   def add_tax_price
     (self.price * 1.10).round
   end
-
+  
 end
