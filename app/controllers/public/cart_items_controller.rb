@@ -37,6 +37,7 @@ class Public::CartItemsController < ApplicationController
   end
 
   def destroy_all
+    flash[:success] = 'カートを空にしました。'
     CartItem.destroy_all
     redirect_to public_cart_items_path
   end
