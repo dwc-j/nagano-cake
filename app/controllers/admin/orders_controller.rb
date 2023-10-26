@@ -11,10 +11,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-<<<<<<< HEAD
-=======
     # @order_detail = OrderDetail.find(params[:id])
->>>>>>> origin/develop
     @order_detail = @order.order_details
     @customer = @order.customer
     if @order.nil?
