@@ -20,27 +20,16 @@ class Order < ApplicationRecord
 
   enum payment_method: { credit_card: 0, transfer: 1 }
 
-
-
- private
-
- def update_order_details_status
-  if self.status == "payment_confirmation"
-   self.order_details.update_all(making_status: "waiting")
-  end
- end
-
   def add_tax_price
     (self.price * 1.10).round
   end
 
+  private
   
-   private
-  
-   def update_order_details_status
-    if self.status == "payment_confirmation"
-     self.order_details.update_all(making_status: "waiting")
-    end
+  def update_order_details_status
+   if self.status == "payment_confirmation"
+    self.order_details.update_all(making_status: "waiting")
    end
+  end
 
 end
