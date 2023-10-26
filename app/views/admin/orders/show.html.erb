@@ -78,7 +78,7 @@
         <td>¥<%= number_to_currency(detail.price, unit: "", strip_insignificant_zeros: true) %></td>
         <td><%= detail.amount %></td>
         <td>¥<%= number_to_currency(detail.price * detail.amount, unit: "", strip_insignificant_zeros: true) %></td>
-          <%= form_with model: @order_detail, url: admin_order_detail_path(@order_detail) do |f| %>  <!--%= form_for([:admin,detail]) do |f| %>-->
+          <!--<%= form_with model: @order_detail, url: admin_order_path(@order) do |f| %>  %= form_for([:admin,detail]) do |f| %>-->
           <td>
         　 <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
           </td>

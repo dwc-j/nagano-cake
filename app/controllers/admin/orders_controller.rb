@@ -11,7 +11,8 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
-    @order_detail = OrderDetail.find(params[:id])
+    # @order_detail = OrderDetail.find(params[:id])
+    @order_detail = @order.order_details
     @customer = @order.customer
     if @order.nil?
       #flash[:alert] = "Order with id #{params[:id]} not found."
