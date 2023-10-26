@@ -1,16 +1,10 @@
 <header class="border-bottom border-dark">
-  <div class="container">
-    <div class="row mt-4 mb-4">
-      <div class="col-3 d-flex align-items-center">
-    　     <%= link_to root_path, class: "border border-dark" do %>
-            ここにロゴ
-          <% end %>
-        </li>
-      </div>
 
-
-      <div class="col-3 d-flex align-items-center">
-        <% if customer_signed_in? %>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <div class="container">
+      <a class="navbar-brand" href="/" %><%= image_tag 'logo.jpg', size: "280x70" %></a>
+      <% if customer_signed_in? %>
+        <div class="d-flex align-items-center">
           ようこそ、<%= current_customer.last_name %>さん!
         <% end %>
       </div>
@@ -74,8 +68,7 @@
           <div class="col-12">
             <div class="mt-3 text-right">
               <%= form_with url: public_search_path, method: :get, local: true do |f| %>
-                <%= f.label :query, "Search" %>
-                <%= f.text_field :query %>
+                <%= f.text_field :query, placeholder: "Search" %>
                 <%= f.submit "検索" %>
               <% end %>
             </div>
