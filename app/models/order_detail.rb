@@ -17,8 +17,6 @@ class OrderDetail < ApplicationRecord
      "completed": 3,
   }
 
-
-
  private
 
  def update_order_status
@@ -28,5 +26,4 @@ class OrderDetail < ApplicationRecord
    self.order.update(status: "preparation_for_shipping")
   end
  end
-
 end
