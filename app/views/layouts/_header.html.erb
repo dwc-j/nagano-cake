@@ -1,7 +1,7 @@
 <header class="border-bottom border-dark">
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
-      <a class="navbar-brand" href="/" %>ここにロゴ</a>
+      <a class="navbar-brand" href="/" %><%= image_tag 'logo.jpg', size: "280x70" %></a>
       <% if customer_signed_in? %>
         <div class="d-flex align-items-center">
           ようこそ、<%= current_customer.last_name %>さん!
