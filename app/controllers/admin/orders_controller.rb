@@ -11,6 +11,7 @@ class Admin::OrdersController < ApplicationController
 
   def show
     @order = Order.find(params[:id])
+    # @order_detail = OrderDetail.find(params[:id])
     @order_detail = @order.order_details
     @customer = @order.customer_id
     if @order.nil?
