@@ -22,5 +22,15 @@ class Order < ApplicationRecord
   def add_tax_price
     (self.price * 1.10).round
   end
+  
+  after_update :update_order_details_status, if: :saved_change_to_status?
+
+  private
+
+  def update_order_details_status
+    if self.status == "payment_confirmation"
+      self.order_details.update_all(making_status: "waiting")
+    end
+  end
 
 end
