@@ -3,6 +3,9 @@
     <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
       注文履歴詳細
     </p>
+    <p class="col-8 mt-5 text-right">
+      <%= link_to "注文履歴一覧に戻る", :back, class: "btn btn-outline-secondary " %>
+    </p>
   </div>
 </div>
 
@@ -77,8 +80,13 @@
         <td>¥<%= number_to_currency(detail.price, unit: "", strip_insignificant_zeros: true) %></td>
         <td><%= detail.amount %></td>
         <td>¥<%= number_to_currency(detail.price * detail.amount, unit: "", strip_insignificant_zeros: true) %></td>
+<<<<<<< HEAD
           <%#<%= form_with model: @order_detail, url: admin_order_path(@order) do |f| %>
         <%= form_with(model: [:admin, detail], local: true) do |f| %>
+=======
+
+          <%= form_with(model: [:admin, detail], local: true) do |f| %>
+>>>>>>> origin/develop
           <td>
             <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
           </td>
