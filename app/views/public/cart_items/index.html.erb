@@ -1,83 +1,81 @@
 <div class="container">
-    <div class="row">
-      <p class="col-3 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h4">
-        ショッピングカート
-      </p>
-      <p class="col-7 mt-5 text-right">
-        <% @total_price = 0 %>
-        <% if current_customer.cart_items.present? %>
-      　<%= link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete, data: {confirm: "本当に空にしますか？"}, class: "btn btn-danger" %>
-      </p>
-    </div>
-</div>
-
-<div class="container">
-  <div class="col-12 mx-auto">
-    <table class='table table-bordered'>
-      <thead class="bg-light">
-        <tr>
-          <th colspan="3">商品名</th>
-          <th>単価(税込)</th>
-          <th scope="col" style="width: 12%">数量</th>
-          <th>小計</th>
-          <th scope="col" style="width: 12%"></th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @cart_items.each do |cart_item| %>
-          <tr>
-            <td colspan="3">
-            	<%= image_tag cart_item.item.image, size: "50x30", class: "img-fluid", alt: "image" %>
-              <%= cart_item.item.name %>
-            </td>
-            <td class="align-middle">
-              <% @price_taxin = cart_item.item.add_tax_price %>
-              ￥<%= number_to_currency(@price_taxin, unit: "", strip_insignificant_zeros: true) %>
-            </td>
-            <td class="align-middle">
-            	<%= form_with model: cart_item, url: public_cart_item_path(cart_item), method: :patch, local: true do |f| %>
-        				<%#<%= f.hidden_field :item_id, :value => @item.id %>
-        				<%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]], { selected: cart_item.amount } %>
-        				<%= f.submit '変更', class: 'btn btn-success btn-sm' %>
-    					<% end %>
-            </td>
-            <td class="align-middle">
-              <% @subtotal = @price_taxin * cart_item.amount %>
-              ￥<%= number_to_currency(@subtotal, unit: "", strip_insignificant_zeros: true) %>
-              <% @total_price += @subtotal %>
-            </td>
-            <td class="align-middle text-center"><%= link_to '削除する', public_cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
-  </div>
-
-  <div class="row justify-content-around">
-    <div class="col-8 mt-2 ml-3">
-  	  <%= link_to '買い物を続ける', root_path, class: "btn btn-primary" %>
-    </div>
-    <div class="col-3">
-      <table class="table table-bordered">
-        <tr>
-  	      <th class="bg-light" scope="col" style="width: 3%">合計金額</th>
-  	      <td scope="col" style="width: 2%">￥<%= number_to_currency(@total_price, unit: "", strip_insignificant_zeros: true) %></td>
-  	    </tr>
-       </table>
-     </div>
-  </div>
-
-
-  <div class="row d-flex justify-content-center mt-5">
-  	<%= link_to '情報入力に進む', new_public_order_path, class: "btn btn-lg btn-success" %>
+  <div class="row">
+    <p class="col-3 font-weight-bold bg-secondary bg-secondary text-light text-center m-5 h4">
+      ショッピングカート
+    </p>
+    <p class="col-7 mt-5 text-right">
+      <% @total_price = 0 %>
+      <% if current_customer.cart_items.present? %>
+        <%= link_to "カートを空にする", public_cart_items_destroy_all_path, method: :delete, data: {confirm: "本当に空にしますか？"}, class: "btn btn-danger" %>
+      <% end %>
+    </p>
   </div>
 </div>
-<% else %>
 
+<% if current_customer.cart_items.present? %>
   <div class="container">
-    <div class="d-flex justify-content-center mt-5">
-      <h5 class="font-weight-bold">カートには何も入っていません</h5>
+    <div class="col-12 mx-auto">
+      <table class='table table-bordered'>
+        <thead class="bg-light">
+          <tr>
+            <th colspan="3">商品名</th>
+            <th>単価(税込)</th>
+            <th scope="col" style="width: 12%">数量</th>
+            <th>小計</th>
+            <th scope="col" style="width: 12%"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @cart_items.each do |cart_item| %>
+            <tr>
+              <td colspan="3">
+              	<%= image_tag cart_item.item.image, size: "50x30", class: "img-fluid", alt: "image" %>
+                <%= cart_item.item.name %>
+              </td>
+              <td class="align-middle">
+                <% @price_taxin = cart_item.item.add_tax_price %>
+                ￥<%= number_to_currency(@price_taxin, unit: "", strip_insignificant_zeros: true) %>
+              </td>
+              <td class="align-middle">
+              	<%= form_with model: cart_item, url: public_cart_item_path(cart_item), method: :patch, local: true do |f| %>
+          				<%#<%= f.hidden_field :item_id, :value => @item.id %>
+          				<%= f.select :amount, [[1, 1], [2, 2], [3, 3], [4, 4], [5, 5], [6, 6], [7, 7], [8, 8], [9, 9], [10, 10]], { selected: cart_item.amount } %>
+          				<%= f.submit '変更', class: 'btn btn-success btn-sm' %>
+      					<% end %>
+              </td>
+              <td class="align-middle">
+                <% @subtotal = @price_taxin * cart_item.amount %>
+                ￥<%= number_to_currency(@subtotal, unit: "", strip_insignificant_zeros: true) %>
+                <% @total_price += @subtotal %>
+              </td>
+              <td class="align-middle text-center"><%= link_to '削除する', public_cart_item_path(cart_item), method: :delete, class: "btn btn-sm btn-danger" %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="row justify-content-around">
+      <div class="col-8 mt-2 ml-3">
+    	  <%= link_to '買い物を続ける', root_path, class: "btn btn-primary" %>
+      </div>
+      <div class="col-3">
+        <table class="table table-bordered">
+         <tr>
+    	     <th class="bg-light" scope="col" style="width: 3%">合計金額</th>
+    	     <td scope="col" style="width: 2%">￥<%= number_to_currency(@total_price, unit: "", strip_insignificant_zeros: true) %></td>
+    	   </tr>
+        </table>
+      </div>
+    </div>
+    <div class="row d-flex justify-content-center mt-5">
+    	<%= link_to '情報入力に進む', new_public_order_path, class: "btn btn-lg btn-success" %>
     </div>
   </div>
-
+<% else %>
+    <div class="container">
+      <div class="d-flex justify-content-center mt-5">
+        <h5 class="font-weight-bold">カートには何も入っていません</h5>
+      </div>
+    </div>
 <% end %>
