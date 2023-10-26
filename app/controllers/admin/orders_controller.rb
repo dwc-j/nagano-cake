@@ -12,7 +12,7 @@ class Admin::OrdersController < ApplicationController
   def show
     @order = Order.find(params[:id])
     @order_detail = @order.order_details
-    @customer = @order.customer
+    @customer = @order.customer_id
     if @order.nil?
       #flash[:alert] = "Order with id #{params[:id]} not found."
       redirect_to admin_orders_path
@@ -25,10 +25,12 @@ class Admin::OrdersController < ApplicationController
 
   def update
     @order = Order.find(params[:id])
+    @order_detail = @order.order_details
     if @order.update(order_params)
-       flash[:success] = '注文ステータスが更新されました！'
+      flash[:success] = '注文ステータスが更新されました！'
       redirect_to admin_order_path(@order)
     else
+      @customer = @order.customer_id
       flash.now[:danger] = '注文ステータスの更新ができませんでした。'
       render :show
     end

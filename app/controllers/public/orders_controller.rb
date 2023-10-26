@@ -58,7 +58,6 @@ class Public::OrdersController < ApplicationController
         @order_detail.price = cart_item.item.price
         @order_detail.save
       end
-      flash[:success] = 'カートを空にしました。'
       current_customer.cart_items.destroy_all
       redirect_to complete_public_orders_path
     else

@@ -3,6 +3,9 @@
     <p class="col-3 font-weight-bold bg-secondary text-light text-center m-5 h5">
       <%= @customer.last_name %><%= @customer.first_name %>さんの詳細情報
     </p>
+    <p class="col-7 mt-5 text-right">
+      <%= link_to "会員一覧に戻る", :back, class: "btn btn-outline-secondary " %>
+    </p>
   </div>
 </div>
 

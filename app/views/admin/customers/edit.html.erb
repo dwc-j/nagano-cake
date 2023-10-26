@@ -19,8 +19,8 @@
   </div>
    <div class="form-row m-3">
      <div class="form-inline text-secondary">
-    <%= f.text_field :last_name, autofocus: true, placeholder: "令和", class:"mr-4 form-control" %>
-    <%= f.text_field :first_name, placeholder: "道子", class:"form-control" %>
+    <%= f.text_field :last_name, autofocus: true, class:"mr-4 form-control" %>
+    <%= f.text_field :first_name, class:"form-control" %>
     </div>
     </div>
 
@@ -30,8 +30,8 @@
   </div>
   <div class="form-row m-3">
     <div class="form-inline text-secondary">
-    <%= f.text_field :last_name_kana, placeholder: "レイワ", class:"mr-4 form-control" %>
-    <%= f.text_field :first_name_kana, placeholder: "ミチコ", class:"form-control" %>
+    <%= f.text_field :last_name_kana, class:"mr-4 form-control" %>
+    <%= f.text_field :first_name_kana, class:"form-control" %>
   </div>
   </div>
 
@@ -42,7 +42,7 @@
     </div>
     <div class="form-row m-3">
       <div class="form-inline ">
-    <%= f.text_field :postal_code, placeholder: "0000000", class: "form-control w-100" %>
+    <%= f.text_field :postal_code, class: "form-control w-100" %>
   </div>
   </div>
 
@@ -51,7 +51,7 @@
     </div>
     <div class="m-3">
       <div class="form-inline ">
-    <%= f.text_field :address, placeholder: "東京都渋谷区代々木神園町0-0", class: "form-control w-100" %>
+    <%= f.text_field :address, class: "form-control w-100" %>
   </div>
   </div>
 
@@ -60,7 +60,7 @@
     </div>
     <div class="form-row m-3">
       <div class="form-inline ">
-    <%= f.text_field :telephone_number, placeholder: "0000000000", class: "form-control w-100" %>
+    <%= f.text_field :telephone_number, class: "form-control w-100" %>
   </div>
   </div>
 
@@ -69,7 +69,7 @@
   </div>
   <div class="m-3">
     <div class="form-inline ">
-    <%= f.email_field :email, autocomplete: "email", placeholder: "sample@example.com", class:"form-control w-100" %>
+    <%= f.email_field :email, autocomplete: "email", class:"form-control w-100" %>
   </div>
   </div>
 
