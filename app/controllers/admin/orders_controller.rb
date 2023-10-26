@@ -34,6 +34,7 @@ class Admin::OrdersController < ApplicationController
       flash.now[:danger] = '注文ステータスの更新ができませんでした。'
       render :show
     end
+    
   end
 
   private
