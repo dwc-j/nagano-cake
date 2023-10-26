@@ -2,31 +2,35 @@
 
   <nav class="navbar navbar-expand-lg navbar-light">
     <div class="container">
+      <div class="col-5" style="right:100px;">
       <a class="navbar-brand" href="/" %><%= image_tag 'logo.jpg', size: "280x70" %></a>
+      </div>
+      <div class="col-4" style="right:100px;">
       <% if customer_signed_in? %>
         <div class="d-flex align-items-center">
-          ようこそ、<%= current_customer.last_name %>さん!
-        <% end %>
+          ようこそ、<%= current_customer.last_name + current_customer.first_name %>さん!
+        </div>
+      <% end %>
       </div>
 
-      <div class="col-6">
+      <div class="col-4 mt-1">
         <div class="row">
           <div class="col-12">
             <div class="d-flex justify-content-end">
               <% if admin_signed_in? %>
                 <%= render 'layouts/admin_header' %>
               <% elsif customer_signed_in? %>
-                <li class="d-flex mr-3">
+                <li class="d-flex mr-4">
                   <%= link_to public_customers_information_path, class: "btn btn-outline-secondary" do %>
                     マイページ
                   <% end %>
                 </li>
-                <li class="d-flex mr-3">
+                <li class="d-flex mr-4">
                   <%= link_to  public_items_path, class: "btn btn-outline-secondary" do %>
                     商品一覧
                   <% end %>
                 </li>
-                <li class="d-flex mr-3">
+                <li class="d-flex mr-4">
                   <%= link_to public_cart_items_path, class: "btn btn-outline-secondary" do %>
                     カート
                     <% if current_customer.cart_items.map(&:amount).any?%>
@@ -42,17 +46,17 @@
                   <% end %>
                 </li>
               <% else %>
-                <li class="d-flex mr-3">
+                <li class="d-flex mr-4">
                   <%= link_to about_path, class: "btn btn-outline-secondary" do %>
                     About
                   <% end %>
                 </li>
-                <li class="d-flex mr-3">
+                <li class="d-flex mr-4">
                   <%= link_to public_items_path, class: "btn btn-outline-secondary" do %>
                     商品一覧
                   <% end %>
                 </li>
-                <li class="d-flex mr-3">
+                <li class="d-flex mr-4">
                   <%= link_to new_customer_registration_path,class: "btn btn-outline-secondary" do %>
                     新規登録
                   <% end %>
