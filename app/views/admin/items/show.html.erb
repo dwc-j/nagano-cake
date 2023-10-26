@@ -1,11 +1,10 @@
 <div class="container">
   <div class="row">
+    
     <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
       商品詳細
     </p>
-    <p class="col-8 mt-5 text-right">
-      <%= link_to "商品一覧に戻る", :back, class: "btn btn-outline-secondary " %>
-    </p>
+
   </div>
 </div>
 
@@ -13,10 +12,13 @@
 <div class="container">
   <div class="row">
     <div class="col-md-4">
+      
       <p>
         <%= image_tag @item.image, size: "250x200" %>
       </p>
+      
     </div>
+    
     <div class="col-md-8">
       <table class="table table-bordered">
         <tr>
@@ -48,9 +50,11 @@
       </table>
     </div>
   </div>
+  
     <p class="d-flex justify-content-center">
       <%= link_to edit_admin_item_path(@item), class: "btn btn-success btn-lg" do%>
         編集する
       <% end %>
     </p>
+    
 </div>
