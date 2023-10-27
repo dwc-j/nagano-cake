@@ -7,94 +7,96 @@
 </div>
 
 <div class="container">
-<div class="row">
-<div class="col-9 mx-auto">
-<table class='table table-bordered'>
-
-  <tr>
-    <th class="bg-light w-25">注文日</th>
-    <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-  </tr>
-  <tr>
-    <th class="bg-light">配送先</th>
-    <td>
-      〒<%= @order.postal_code %><br>
-      <%= @order.address %><br>
-      <%= @order.name %>
-    </td>
-  </tr>
-  <tr>
-    <th class="bg-light">支払方法</th>
-    <td><%= @order.payment_method_i18n %></td>
-  </tr>
-  <tr>
-    <th class="bg-light">注文ステータス</th>
-    <td><%= @order.status_i18n %></td>
-  </tr>
-</table>
-
-<!--<p>支払方法：%= @order.payment_method, Order.payment_method.keys.map {|k| [I18n.t("activerecord.attributes.order.payment_method.#{k}"), k]} %></p>-->
-</div>
-</div>
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <table class='table table-bordered'>
+        <tr>
+          <th class="bg-light w-25">注文日</th>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">配送先</th>
+          <td>
+            〒<%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="bg-light">支払方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">注文ステータス</th>
+          <td><%= @order.status_i18n %></td>
+        </tr>
+      </table>
+      <!--<p>支払方法：%= @order.payment_method, Order.payment_method.keys.map {|k| [I18n.t("activerecord.attributes.order.payment_method.#{k}"), k]} %></p>-->
+    </div>
+  </div>
 </div>
 <div class="container">
   <div class="row">
-    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
-      注文内容
-    </p>
-    <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4", style="left:345px;">
-      請求情報
-    </p>
+    <div class="col-7">
+      <div class="row">
+        <p class="col-3 font-weight-bold bg-secondary text-light text-center m-5 h4">
+          注文内容
+        </p>
+      </div>
+      <div class="row">
+        <table class='table table-bordered'>
+          <thead class="bg-light">
+            <tr>
+              <th>商品名</th>
+              <th>単価(税込)</th>
+              <th>数量</th>
+              <th>小計</th>
+            </tr>
+          </thead>
+          <% total = 0 %>
+          <tbody>
+            <% @order.order_details.each do |detail| %>
+              <tr>
+                <td><%= detail.item.name %></td>
+                <td>
+                  <% price_taxin = detail.add_tax_price %>
+                  ￥<%= number_to_currency(price_taxin, unit: "", strip_insignificant_zeros: true) %>
+                </td>
+                <td><%= detail.amount %></td>
+                <td>
+                  <% subtotal = price_taxin * detail.amount %>
+                  ￥<%= number_to_currency(subtotal, unit: "", strip_insignificant_zeros: true) %>
+                </td>
+                <% total += subtotal %>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="col-5 mb-3">
+      <div class="row">
+        <p class="col-4 font-weight-bold bg-secondary text-light text-center m-5 h4">
+          請求情報
+        </p>
+      </div>
+      <div class="row">
+        <table class="table table-bordered ml-2">
+          <tr>
+            <th class="bg-light">商品合計</th>
+            <td>￥<%= number_to_currency(total, unit: "", strip_insignificant_zeros: true ) %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">送料</th>
+            <td>￥<%= number_to_currency(@order.shipping_fee, unit: "", strip_insignificant_zeros: true ) %></td>
+          </tr>
+          <tr>
+            <th class="bg-light">請求合計金額</th>
+            <td>￥<%= number_to_currency(total + @order.shipping_fee, unit: "", strip_insignificant_zeros: true ) %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
   </div>
-
-<div class="row">
-<div class="col-7">
-<table class='table table-bordered'>
-
-    <thead class="bg-light">
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-    </tr>
-    </thead>
-    <% total = 0 %>
-    <% @order.order_details.each do |detail| %>
-    <tbody>
-      <tr>
-        <td><%= detail.item.name %></td>
-        <td>
-          <% price_taxin = detail.add_tax_price %>
-          ￥<%= number_to_currency(price_taxin, unit: "", strip_insignificant_zeros: true) %>
-        </td>
-        <td><%= detail.amount %></td>
-        <td>
-          <% subtotal = price_taxin * detail.amount %>
-          ￥<%= number_to_currency(subtotal, unit: "", strip_insignificant_zeros: true) %>
-        </td>
-        <% total += subtotal %>
-      </tr>
-    </tbody>
-     <% end %>
-  </table>
-</div>
-<div class="col-3 mb-3">
-  <table class="table table-bordered">
-    <tr>
-      <th class="bg-light">商品合計</th>
-      <td>￥<%= number_to_currency(total, unit: "", strip_insignificant_zeros: true ) %></td>
-    </tr>
-    <tr>
-      <th class="bg-light">送料</th>
-      <td>￥<%= number_to_currency(@order.shipping_fee, unit: "", strip_insignificant_zeros: true ) %></td>
-    </tr>
-    <tr>
-      <th class="bg-light">請求合計金額</th>
-      <td>￥<%= number_to_currency(total + @order.shipping_fee, unit: "", strip_insignificant_zeros: true ) %></td>
-
-    </tr>
-  </table>
-</div>
-</div>
 </div>

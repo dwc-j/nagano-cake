@@ -7,16 +7,16 @@
 		</div>
 
     <div class='col-9 mt-5'>
-    	<div class="my-3"><span class="h2">商品一覧</span> <span>(全<%= @items.count %>件)</span></div>
+    	<div class="my-3">
+    		<span class="h2">商品一覧</span> <span>(全<%= @items.count %>件)</span>
+    	</div>
     	<%= render partial: 'index', locals: { obj: @items } %>
 
-
-     <div class="d-flex justify-content-center">
-  		<p>
-    		<%= paginate @items, theme: 'bootstrap-5' %>
-  		</p>
- 		</div>
-
+      <div class="d-flex justify-content-center">
+  			<p>
+    			<%= paginate @items, theme: 'bootstrap-5' %>
+  			</p>
+ 			</div>
 		</div>
 	</div>
 </div>
