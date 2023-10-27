@@ -1,116 +1,122 @@
 <div class="container">
   <div class="row">
+    
     <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
       注文履歴詳細
     </p>
-    <p class="col-8 mt-5 text-right">
-      <%= link_to "注文履歴一覧に戻る", :back, class: "btn btn-outline-secondary " %>
-    </p>
+
   </div>
 </div>
 
 
 <div class="container">
-<div class="row">
-<div class="col-9 mx-auto">
-<table class='table table-bordered'>
-    <tr>
-<th class="bg-light w-25">購入者</th>
-<td>
-  <%= link_to admin_customer_path(@customer) do%>
-    <%= @order.customer.last_name + @order.customer.first_name %>
-  <% end %>
-</td>
-</tr>
-  <th class="bg-light">注文日</th>
-  <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-</tr>
-<tr>
-  <th class="bg-light">配送先</th>
-  <td>
-    〒<%= @order.postal_code %><br>
-    <%= @order.address %><br>
-    <%= @order.name %>
-  </td>
-</tr>
-<tr>
-  <th class="bg-light">支払方法</th>
-  <td><%= @order.payment_method_i18n %></td>
-</tr>
-<tr>
-  <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
-    <th class="bg-light">
-      <%= f.label :status, "注文ステータス" %>
-    </th>
-    <td>
-      <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
-      <%= f.submit "更新", class: "btn btn-success btn-sm ml-4" %>
-    </td>
-  <% end %>
-</tr>
-</table>
+  <div class="row">
+    <div class="col-9 mx-auto">
+      <table class='table table-bordered'>
+        
+        <tr>
+          <th class="bg-light w-25">購入者</th>
+          <td>
+            <%= link_to admin_customer_path(@customer) do%>
+              <%= @order.customer.last_name + @order.customer.first_name %>
+            <% end %>
+          </td>
+        </tr>
+        <tr>
+          <th class="bg-light">注文日</th>
+          <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
+        </tr>
+        <tr>
+          <th class="bg-light">配送先</th>
+          <td>
+            〒<%= @order.postal_code %><br>
+            <%= @order.address %><br>
+            <%= @order.name %>
+          </td>
+        </tr>
+        <tr>
+          <th class="bg-light">支払方法</th>
+          <td><%= @order.payment_method_i18n %></td>
+        </tr>
+        <tr>
+          <%= form_with model: @order, url: admin_order_path(@order) do |f| %>
+            <th class="bg-light">
+              <%= f.label :status, "注文ステータス" %>
+            </th>
+            <td>
+              <%= f.select :status, Order.statuses.keys.map {|k| [I18n.t("enums.order.status.#{k}"), k]} %>
+              <%= f.submit "更新", class: "btn btn-success btn-sm ml-4" %>
+            </td>
+          <% end %>
+        </tr>
+      </table>
 
+    </div>
+  </div>
 </div>
-</div>
-</div>
+
 <div class="container">
   <div class="row">
+    
     <p class="col-2 font-weight-bold bg-secondary text-light text-center m-5 h4">
       注文商品一覧
     </p>
+    
   </div>
 
-<div class="row">
-<div class="col-9">
-<table class='table table-bordered'>
+  <div class="row">
+    <div class="col-9">
+      <table class='table table-bordered'>
 
-    <thead>
-    <tr>
-      <th>商品名</th>
-      <th>単価(税込)</th>
-      <th>数量</th>
-      <th>小計</th>
-      <th>製作ステータス</th>
-      <th></th>
-    </tr>
-    </thead>
-    <% @order.order_details.each do |detail| %>
-    <tbody>
-      <tr>
-        <td><%= detail.item.name %></td>
-        <td>¥<%= number_to_currency(detail.add_tax_price, unit: "", strip_insignificant_zeros: true) %></td>
-        <td><%= detail.amount %></td>
-        <td>¥<%= number_to_currency(detail.add_tax_price * detail.amount, unit: "", strip_insignificant_zeros: true) %></td>
+        <thead>
+          <tr>
+            <th>商品名</th>
+            <th>単価(税込)</th>
+            <th>数量</th>
+            <th>小計</th>
+            <th>製作ステータス</th>
+            <th></th>
+          </tr>
+        </thead>
+        
+        <% @order.order_details.each do |detail| %>
+        <tbody>
+          <tr>
+            <td><%= detail.item.name %></td>
+            <td>¥<%= number_to_currency(detail.add_tax_price, unit: "", strip_insignificant_zeros: true) %></td>
+            <td><%= detail.amount %></td>
+            <td>¥<%= number_to_currency(detail.add_tax_price * detail.amount, unit: "", strip_insignificant_zeros: true) %></td>
 
-          <%= form_with(model: [:admin, detail], local: true) do |f| %>
-          <td>
-            <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
-          </td>
-          <td class="text-center">
-            <%= f.submit "更新", class: "btn btn-success btn-sm" %>
-          </td>
-        <% end %>
-      </tr>
-    </tbody>
-     <% end %>
-  </table>
-</div>
-<div class="col-3 d-flex align-items-end mb-3">
-  <table>
-    <tr>
-      <th>商品合計</th>
-      <td>¥<%= number_to_currency(@order.order_details.sum {|detail| detail.add_tax_price * detail.amount}, unit: "", strip_insignificant_zeros: true ) %></td>
-    </tr>
-    <tr>
-      <th>送料</th>
-      <td>¥<%= number_to_currency(@order.shipping_fee, unit: "", strip_insignificant_zeros: true ) %></td>
-    </tr>
-    <tr>
-      <th>請求合計金額</th>
-      <td class="font-weight-bold">¥<%= number_to_currency(@order.order_details.sum {|detail| detail.add_tax_price * detail.amount} + @order.shipping_fee , unit: "", strip_insignificant_zeros: true ) %></td>
-    </tr>
-  </table>
-</div>
-</div>
+            <%= form_with(model: [:admin, detail], local: true) do |f| %>
+            <td>
+              <%= f.select :making_status, OrderDetail.making_statuses.keys.map {|k| [I18n.t("enums.order_detail.making_status.#{k}"), k]} %>
+            </td>
+            <td class="text-center">
+              <%= f.submit "更新", class: "btn btn-success btn-sm" %>
+            </td>
+            <% end %>
+          </tr>
+        </tbody>
+      <% end %>
+      </table>
+    </div>
+
+    <div class="col-3 d-flex align-items-end mb-3">
+      <table>
+        <tr>
+          <th>商品合計</th>
+          <td>¥<%= number_to_currency(@order.order_details.sum {|detail| detail.add_tax_price * detail.amount}, unit: "", strip_insignificant_zeros: true ) %></td>
+        </tr>
+        <tr>
+          <th>送料</th>
+          <td>¥<%= number_to_currency(@order.shipping_fee, unit: "", strip_insignificant_zeros: true ) %></td>
+        </tr>
+        <tr>
+          <th>請求合計金額</th>
+          <td class="font-weight-bold">¥<%= number_to_currency(@order.order_details.sum {|detail| detail.add_tax_price * detail.amount} + @order.shipping_fee , unit: "", strip_insignificant_zeros: true ) %></td>
+        </tr>
+      </table>
+    </div>
+  </div>
 </div>
 

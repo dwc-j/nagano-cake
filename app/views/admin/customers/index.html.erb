@@ -7,41 +7,41 @@
 </div>
 
 <div class="container">
- <div class="col-9 mx-auto">
-  <table class='table table-hover table-inverse'>
-    <thead  class="bg-light">
-      <tr>
-        <th>会員ID</th>
-        <th>氏名</th>
-        <th>メールアドレス</th>
-        <th>ステータス</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @customers.each do |customer| %>
+  <div class="col-9 mx-auto">
+    <table class='table table-hover table-inverse'>
+      <thead  class="bg-light">
         <tr>
-          <td><%= customer.id%></td>
-          <td class="text-body">
-            <%= link_to admin_customer_path(customer) do %>
-              <%= customer.last_name %><%= customer.first_name %>
-            <% end  %>
-            </td>
-          <td><%= customer.email%></td>
-          <td>
-            <% if customer.is_active %>
-              <div class="text-success font-weight-bold">有効</div>
-            <% else %>
-              <div class="text-muted font-weight-bold">退会</div>
-            <% end %>
-          </td>
+          <th>会員ID</th>
+          <th>氏名</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
         </tr>
-      <% end %>
-    </tbody>
-  </table>
+      </thead>
+      <tbody>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id%></td>
+            <td class="text-body">
+              <%= link_to admin_customer_path(customer) do %>
+                <%= customer.last_name %><%= customer.first_name %>
+              <% end  %>
+              </td>
+            <td><%= customer.email%></td>
+            <td>
+              <% if customer.is_active %>
+                <div class="text-success font-weight-bold">有効</div>
+              <% else %>
+                <div class="text-muted font-weight-bold">退会</div>
+              <% end %>
+            </td>
+          <% end %>
+          </tr>
+      </tbody>
+    </table>
+    
+    <p class="d-flex justify-content-center">
+      <%= paginate @customers, theme: 'bootstrap-5' %>
+    </p>
 
-  <p class="d-flex justify-content-center">
-    <%= paginate @customers, theme: 'bootstrap-5' %>
-  </p>
-
- </div>
+  </div>
 </div>
