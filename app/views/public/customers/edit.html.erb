@@ -8,71 +8,73 @@
 
 <div class="container">
   <div class="row d-flex justify-content-center">
-  <div class="col-7 d-flex justify-content-center align-items-center border rounded p-3 shadow">
-　<%= form_with model: @customer, url: public_customers_information_path, method: :patch do |f| %>
-  <%= render "layouts/errors", obj: @customer %>
+    <div class="col-7 d-flex justify-content-center align-items-center border rounded p-3 shadow">
+　    <%= form_with model: @customer, url: public_customers_information_path, method: :patch do |f| %>
+        <%= render "layouts/errors", obj: @customer %>
 
-
-    <div class="font-weight-bold mt-3 ml-3">
-      氏名
+        <div class="font-weight-bold mt-3 ml-3">
+          氏名
+        </div>
+        <div class="form-row m-3">
+          <div class="form-inline text-secondary">
+            <%= f.text_field :last_name, class:"mr-4 form-control" %>
+            <%= f.text_field :first_name, class:"form-control" %>
+          </div>
+        </div>
+    
+        <div class="font-weight-bold mt-3 ml-3">
+          フリガナ
+        </div>
+        <div class="form-row m-3">
+          <div class="form-inline text-secondary">
+            <%= f.text_field :last_name_kana, class:"mr-4 form-control" %>
+            <%= f.text_field :first_name_kana, class:"form-control" %>
+          </div>
+        </div>
+    
+        <div class="font-weight-bold mt-3 ml-3 form-group">
+          <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+        </div>
+        <div class="form-row m-3">
+          <div class="form-inline ">
+            <%= f.text_field :postal_code, class: "form-control w-100" %>
+          </div>
+        </div>
+    
+        <div class="font-weight-bold mt-3 ml-3 form-group">
+         <%= f.label :address, "住所" %>
+        </div>
+        <div class="m-3">
+          <div class="form-inline ">
+            <%= f.text_field :address, class: "form-control w-100" %>
+          </div>
+        </div>
+    
+        <div class="font-weight-bold mt-3 ml-3 form-group">
+         <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
+        </div>
+        <div class="form-row m-3">
+          <div class="form-inline ">
+            <%= f.text_field :telephone_number, class: "form-control w-100" %>
+          </div>
+        </div>
+    
+        <div class="font-weight-bold mt-3 ml-3 form-group">
+          <%= f.label :email, "メールアドレス" %>
+        </div>
+        <div class="m-3">
+          <div class="form-inline ">
+            <%= f.email_field :email, class:"form-control w-100" %>
+          </div>
+        </div>
+    
+        <div class="actions mt-5 d-flex justify-content-center">
+        　<%= f.submit "編集内容を保存",class: "btn btn-success form-control mr-4" %>
+    
+        　<%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger form-control" %>
+      　</div>
+    
+      <% end %>
     </div>
-    <div class="form-row m-3">
-      <div class="form-inline text-secondary">
-        <%= f.text_field :last_name, class:"mr-4 form-control" %>
-        <%= f.text_field :first_name, class:"form-control" %>
-      </div>
-    </div>
-
-    <div class="font-weight-bold mt-3 ml-3">
-      フリガナ
-    </div>
-      <div class="form-row m-3">
-        <div class="form-inline text-secondary">
-          <%= f.text_field :last_name_kana, class:"mr-4 form-control" %>
-          <%= f.text_field :first_name_kana, class:"form-control" %>
-      </div>
-    </div>
-
-    <div class="font-weight-bold mt-3 ml-3 form-group">
-      <%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
-    </div>
-    <div class="form-row m-3">
-      <div class="form-inline ">
-        <%= f.text_field :postal_code, class: "form-control w-100" %>
-      </div>
-    </div>
-
-    <div class="font-weight-bold mt-3 ml-3 form-group">
-     <%= f.label :address, "住所" %>
-    </div>
-    <div class="m-3">
-      <div class="form-inline ">
-        <%= f.text_field :address, class: "form-control w-100" %>
-      </div>
-    </div>
-
-    <div class="font-weight-bold mt-3 ml-3 form-group">
-     <%= f.label :telephone_number, "電話番号（ハイフンなし）" %>
-    </div>
-    <div class="form-row m-3">
-      <div class="form-inline ">
-        <%= f.text_field :telephone_number, class: "form-control w-100" %>
-      </div>
-    </div>
-
-    <div class="font-weight-bold mt-3 ml-3 form-group">
-      <%= f.label :email, "メールアドレス" %>
-    </div>
-    <div class="m-3">
-      <div class="form-inline ">
-        <%= f.email_field :email, class:"form-control w-100" %>
-      </div>
-    </div>
-
-    <div class="actions mt-5 d-flex justify-content-center">
-    　<%= f.submit "編集内容を保存",class: "btn btn-success form-control mr-4" %>
-
-    　<%= link_to "退会する", public_customers_unsubscribe_path, class: "btn btn-danger form-control" %>
-  　</div>
-
-  　<% end %>
+  </div>
+</div>

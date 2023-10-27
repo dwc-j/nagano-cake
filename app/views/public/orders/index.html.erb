@@ -5,59 +5,53 @@
     </p>
   </div>
 
-
-
-<% if @orders.count == 0 %>
-  <div class='mx-auto max-w-3xl'>
-    <p class='mb-8 text-xl text-center font-weight-bold h5'>ご注文はございません</p>
-    <div class='d-flex justify-content-center mt-5'>
-      <%= link_to '商品一覧へ', public_items_path, class: "btn btn-primary" %>
+  <% if @orders.count == 0 %>
+    <div class='mx-auto max-w-3xl'>
+      <p class='mb-8 text-xl text-center font-weight-bold h5'>ご注文はございません</p>
+      <div class='d-flex justify-content-center mt-5'>
+        <%= link_to '商品一覧へ', public_items_path, class: "btn btn-primary" %>
+      </div>
     </div>
-  </div>
-<% else %>
-<div class="row d-flex justify-content-center">
-  <div class="col-10">
-  <table class='table table-bordered'>
-  <thead class="bg-light">
-    <tr>
-      <th>注文日</th>
-      <th colspan="4">配送先</th>
-      <th>注文商品</th>
-      <th>支払金額</th>
-      <th>ステータス</th>
-      <th>注文詳細</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @orders.each do |order| %>
-      <tr>
-        <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
-        <td colspan="4">
-          〒<%= order.postal_code %></br>
-          <%= order.address %></br>
-          <%= order.name %>
-        </td>
-        <div>
-        <td class="align-middle">
-          <% order.order_details.each do |order_detail| %>
-              <%= order_detail.item.name %></br>
-          <% end %>
-        </td>
-        <td class="align-middle">
-          ￥<%= number_to_currency(order.total_payment, unit: "", strip_insignificant_zeros: true) %>
-        </td>
-
-        <td class="align-middle"><%= order.status_i18n %></td>
-        <td class="align-middle">
-
-          <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
-        </td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
-</div>
-</div>
-</div>
+  <% else %>
+    <div class="row d-flex justify-content-center">
+      <div class="col-10">
+        <table class='table table-bordered'>
+          <thead class="bg-light">
+            <tr>
+              <th>注文日</th>
+              <th colspan="4">配送先</th>
+              <th>注文商品</th>
+              <th>支払金額</th>
+              <th>ステータス</th>
+              <th>注文詳細</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @orders.each do |order| %>
+              <tr>
+                <td class="align-middle"><%= order.created_at.strftime('%Y/%m/%d') %></td>
+                <td colspan="4">
+                  〒<%= order.postal_code %></br>
+                  <%= order.address %></br>
+                  <%= order.name %>
+                </td>
+                <td class="align-middle">
+                  <% order.order_details.each do |order_detail| %>
+                      <%= order_detail.item.name %></br>
+                  <% end %>
+                </td>
+                <td class="align-middle">
+                  ￥<%= number_to_currency(order.total_payment, unit: "", strip_insignificant_zeros: true) %>
+                </td>
+                <td class="align-middle"><%= order.status_i18n %></td>
+                <td class="align-middle">
+                  <%= link_to '表示する', public_order_path(order.id), class: "btn btn-primary" %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  <% end %>
 </div>
